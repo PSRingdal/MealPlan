@@ -86,6 +86,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.25.0)
       msgpack (~> 1.5)
+    bootstrap (5.3.8)
+      popper_js (>= 2.11.8, < 3)
     brakeman (8.0.6)
       racc
     builder (3.3.0)
@@ -104,6 +106,9 @@ GEM
     concurrent-ruby (1.3.8)
     connection_pool (3.0.2)
     crass (1.0.7)
+    dartsass-rails (0.5.1)
+      railties (>= 6.0.0)
+      sass-embedded (~> 1.63)
     date (3.5.1)
     debug (1.11.1)
       irb (~> 1.10)
@@ -128,6 +133,27 @@ GEM
       raabro (~> 1.4)
     globalid (1.4.0)
       activesupport (>= 6.1)
+    google-protobuf (4.36.0)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.0-aarch64-linux-gnu)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.0-aarch64-linux-musl)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.0-arm64-darwin)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.0-x86_64-darwin)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.0-x86_64-linux-gnu)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.36.0-x86_64-linux-musl)
+      bigdecimal
+      rake (~> 13.3)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -215,6 +241,7 @@ GEM
     parser (3.3.12.0)
       ast (~> 2.4.1)
       racc
+    popper_js (2.11.8)
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
@@ -314,6 +341,22 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (3.5.0)
+    sass-embedded (1.103.1-aarch64-linux-gnu)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.103.1-aarch64-linux-musl)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.103.1-arm-linux-gnueabihf)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.103.1-arm-linux-musleabihf)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.103.1-arm64-darwin)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.103.1-x86_64-darwin)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.103.1-x86_64-linux-gnu)
+      google-protobuf (~> 4.31)
+    sass-embedded (1.103.1-x86_64-linux-musl)
+      google-protobuf (~> 4.31)
     securerandom (0.4.1)
     selenium-webdriver (4.47.0)
       base64 (~> 0.2)
@@ -321,6 +364,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    simple_form (5.4.1)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
     solid_cable (4.0.2)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -399,9 +445,11 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bootstrap (~> 5.3)
   brakeman
   bundler-audit
   capybara
+  dartsass-rails (~> 0.5.1)
   debug
   image_processing (~> 1.2)
   importmap-rails
@@ -412,6 +460,7 @@ DEPENDENCIES
   rails (~> 8.1.3)
   rubocop-rails-omakase
   selenium-webdriver
+  simple_form
   solid_cable
   solid_cache
   solid_queue
@@ -444,6 +493,7 @@ CHECKSUMS
   bigdecimal (4.1.2) sha256=53d217666027eab4280346fba98e7d5b66baaae1b9c3c1c0ffe89d48188a3fbd
   bindex (0.8.1) sha256=7b1ecc9dc539ed8bccfc8cb4d2732046227b09d6f37582ff12e50a5047ceb17e
   bootsnap (1.25.0) sha256=41059e7d0f9cb4023a33465d095f64b913fc9d1b808d6524c307da945fbcffcf
+  bootstrap (5.3.8) sha256=1c23b06df24ec28a0058ad90a0da93e260d2c0a5c453d7087f6bad428464742f
   brakeman (8.0.6) sha256=759cc69341115e6c2dcd47b6fd8649a0b9bd540e3585ac8a0a94e31c66fee386
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
   bundler (4.0.11) sha256=5bcec0fb78302e48d02ee46f10ee6e6942be647ba5b44a6d1ddfda9a240ce785
@@ -452,6 +502,7 @@ CHECKSUMS
   concurrent-ruby (1.3.8) sha256=b2f1be836e968ccc78ccfce277ea79c72a88633f22306782c16ff23fb415d1e1
   connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
   crass (1.0.7) sha256=94868719948664c89ddcaf0a37c65048413dfcb1c869470a5f7a7ceb5390b295
+  dartsass-rails (0.5.1) sha256=f19510fb1b29c76c1739a06954d615f1d20ad653b6fc668dd7c68542bb303a1a
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
   debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6
   dotenv (3.2.0) sha256=e375b83121ea7ca4ce20f214740076129ab8514cd81378161f11c03853fe619d
@@ -470,6 +521,13 @@ CHECKSUMS
   ffi (1.17.4-x86_64-linux-musl) sha256=3fdf9888483de005f8ef8d1cf2d3b20d86626af206cbf780f6a6a12439a9c49e
   fugit (1.13.0) sha256=a4f093fce740da52f216740a5041e2a594ea763cdb89e8b2754ca4399634ab18
   globalid (1.4.0) sha256=037f12fbf1d9d7a014d501c2d5c77356fd4ddd96d7a7991d6700bba96706f427
+  google-protobuf (4.36.0) sha256=2132fb002366b85a57fbb796333e2cb1f969126e05f9af32149709ba3fd397b5
+  google-protobuf (4.36.0-aarch64-linux-gnu) sha256=3fa22004853b83297d8ad4ca5c9adc8aea5e6da7b4caadf5577cb9da3eefe63f
+  google-protobuf (4.36.0-aarch64-linux-musl) sha256=6392f5e7cc5366203349f268c98e39f29c2ef9766ebbdb434819d7edb085a12c
+  google-protobuf (4.36.0-arm64-darwin) sha256=be182aac1cf55ccbbd27ec5a94d5b012069075f5c879d65423d33e6b2dec86f5
+  google-protobuf (4.36.0-x86_64-darwin) sha256=6cb938760546ee5ce57d04ed358ea10d0278b6f1ddea35e100c278f429afc25b
+  google-protobuf (4.36.0-x86_64-linux-gnu) sha256=8c253f7cb7647cdf1f54fc3f215e151206b5159e03d74fe29b8599264903de2b
+  google-protobuf (4.36.0-x86_64-linux-musl) sha256=d6c510ff9743b3dcde6acdea06512e4e4ecf53246e5c5b689879861e05d4738a
   i18n (1.15.2) sha256=00f9eb62412fe593b2a65a97daa75300d37abb8f7202ec748e94b6d46a9dd1b5
   image_processing (1.14.0) sha256=754cc169c9c262980889bec6bfd325ed1dafad34f85242b5a07b60af004742fb
   importmap-rails (2.2.3) sha256=7101be2a4dc97cf1558fb8f573a718404c5f6bcfe94f304bf1f39e444feeb16a
@@ -508,6 +566,7 @@ CHECKSUMS
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   parallel (2.1.0) sha256=b35258865c2e31134c5ecb708beaaf6772adf9d5efae28e93e99260877b09356
   parser (3.3.12.0) sha256=21a6d7f755d5a24dfbdc6e6b772e4e879a52e7631a88bc5a3a134606052c9828
+  popper_js (2.11.8) sha256=f4b0be717fc0d50bdb3dbbc55788525a9e0e8f640b76c9971fc34ee609eadbd2
   pp (0.6.4) sha256=dfcb0fce700c41456265922884f9fe195d7fbb0674a3578e6c0f69588e82b570
   prettyprint (0.2.0) sha256=2bc9e15581a94742064a3cc8b0fb9d45aae3d03a1baa6ef80922627a0766f193
   prism (1.9.0) sha256=7b530c6a9f92c24300014919c9dcbc055bf4cdf51ec30aed099b06cd6674ef85
@@ -539,8 +598,17 @@ CHECKSUMS
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
   ruby-vips (2.3.0) sha256=e685ec02c13969912debbd98019e50492e12989282da5f37d05f5471442f5374
   rubyzip (3.5.0) sha256=f77c49d737a849b662f6ca4de473f31b4ecd8288f1c9f901a5c820641f0f8d7c
+  sass-embedded (1.103.1-aarch64-linux-gnu) sha256=48790fb0be3c57177121f28626a7c5cfc258a06aa499f09fd80a55054cc46c09
+  sass-embedded (1.103.1-aarch64-linux-musl) sha256=fb0bfcbab2e7baf8e6a59890e2729037cd1651859718e7c7a5878d5f9e2a6e8c
+  sass-embedded (1.103.1-arm-linux-gnueabihf) sha256=1388f692fd7c76d3fe03fb8d79a45ca89586a1fa19a8718faf875f457bed4169
+  sass-embedded (1.103.1-arm-linux-musleabihf) sha256=9e2a3cf86576d96fd16ebd1fbd4333e72c3df6b1990e5273d5a3b4d2e1eec4ac
+  sass-embedded (1.103.1-arm64-darwin) sha256=b4afa0515a8bdb9949675bc85a3625b676bd11080b4d5b5134282729762a2261
+  sass-embedded (1.103.1-x86_64-darwin) sha256=75514c8f62a849e5e2e98fe89268176278fb0900751208a7ae3322451a0b5285
+  sass-embedded (1.103.1-x86_64-linux-gnu) sha256=1056cb8031fbceee992a3d07c39e9118864aa280e1ba03d85bc5397bd4479333
+  sass-embedded (1.103.1-x86_64-linux-musl) sha256=2f52d9f70030a2d8ddbff8289049df1d38f20f55ba05a87a0049d99fbaa1108c
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.47.0) sha256=67f915b8223d2133bbaa13e92fd98854175394f086e2036a9eff4f5561fd69e4
+  simple_form (5.4.1) sha256=58c3d229034c7e5545035c3271b6f030ef730c340b9d7d8eb730e0a385b20808
   solid_cable (4.0.2) sha256=084636a67679ad00d23088b33c84047e614bcf41ee559db24b414d83cdc42d03
   solid_cache (1.0.10) sha256=bc05a2fb3ac78a6f43cbb5946679cf9db67dd30d22939ededc385cb93e120d41
   solid_queue (1.7.0) sha256=6566b70b801d1c317c81bba7bcdd5677c019afac584a30374b4164002ca356d3

@@ -1,0 +1,17 @@
+<div class="container ">
+  <h1>Build a meal plan</h1>
+  <div class="search-recipe" data-controller="search">
+    <form data-search-target="form" data-action="submit->search#submit">
+      <div class="form-group d-flex">
+        <input type="text" class="form-control" data-search-target="inputField">
+        <button type="submit" class="btn btn-secondary">Search</button>
+      </div>
+    </form>
+
+    <div data-controller="category">
+      <div data-search-target="mealCards" data-category-target="mealCards">
+
+      </div>
+    </div>
+  </div>
+</div>

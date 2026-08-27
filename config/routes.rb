@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :meal_plans, only: [ :index, :show, :create, :destroy ] do
     resources :meal_plan_recipes, only: [ :create, :destroy ]
   end
+
+  resources :recipes, only: [ :index, :show, :create, :destroy ]
 end

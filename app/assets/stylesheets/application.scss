@@ -8,3 +8,19 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+@import "bootstrap";
+
+.body {
+  background-color: #FAF6F0;
+}
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+
+.meal-row {
+  display: flex;
+  overflow: auto;
+}
