@@ -5,14 +5,16 @@ const LISTURL = "https://www.themealdb.com/api/json/v1/1/categories.php"
 
 const mealPlanCard = (meal) => {
   return `
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-      <div class="card mb-2">
+  <a href="/recipes/${meal.idMeal}" class="recipe-link">
+    <div>
+      <div class="card mb-2" data-id="${meal.idMeal}" data-action="click->recipe-show#showcard">
         <img src="${meal.strMealThumb}">
-        <div class="card-body">
-          <h2> ${meal.strMeal}</h2>
-        </div>
+      </div>
+      <div class="card-body">
+        <h2> ${meal.strMeal}</h2>
       </div>
     </div>
+  </a>
   `
 }
 
@@ -54,7 +56,6 @@ fetchCategories() {
       })
     })
 }
-
 
 
 

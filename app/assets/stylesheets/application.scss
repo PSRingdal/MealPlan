@@ -9,6 +9,8 @@
  * Consider organizing styles into separate files for maintainability.
  */
 @import "bootstrap";
+@import "./components/index.scss";
+@import "./pages/index.scss";
 
 .body {
   background-color: #FAF6F0;
@@ -17,10 +19,4 @@
 .container {
   width: 800px;
   margin: 0 auto;
-}
-
-
-.meal-row {
-  display: flex;
-  overflow: auto;
 }

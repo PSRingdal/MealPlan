@@ -1,0 +1,42 @@
+  <div class="show-container">
+    <div class="card-wrapper" data-controller="recipe-show">
+
+      <div class="img-wrapper">
+        <img src="<%= @recipe["strMealThumb"] %>" class="show-card-img">
+      </div>
+
+      <div class="body">
+        <h2> <%= @recipe["strMeal"] %></h2>
+        <button class="btn btn-success" data-action="click->recipe-show#ingredients">Ingredients</button>
+        <button class="btn btn-success" data-action="click->recipe-show#instructions">Instructions</button>
+
+        <ul class="ingredients-list" data-recipe-show-target="ingredientList">
+          <% (1..20).each do |i| %>
+            <% ingredient = @recipe["strIngredient#{i}"] %>
+            <% mesure = @recipe["strMeasure#{i}"] %>
+            <% unless ingredient.blank?  || mesure.blank?%>
+              <div class="ingredient-row">
+                <li><%= ingredient%></li>
+                <li><%= mesure %></li>
+              </div>
+            <% end %>
+          <% end %>
+        </ul>
+
+        <div data-recipe-show-target="instructions" class="d-none">
+          <% instructions = @recipe["strInstructions"].split(/\r?\n/)
+          .map(&:strip)
+          .reject(&:empty?)
+          .map { |line| line.sub(/^(step\s*\d+[:.)-]?\s*|\d+[:.)-]\s*)/i, "") } %>
+
+          <ol>
+            <% instructions.each do |value| %>
+              <li><%="#{value}"%></li>
+            <% end %>
+          </ol>
+        </div>
+
+      </div>
+
+    </div>
+  </div>

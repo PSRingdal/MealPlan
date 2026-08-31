@@ -9,7 +9,11 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    id = params[:id]
+    url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
+    response = URI.open(url).read
+    data = JSON.parse(response)
+    @recipe = data["meals"][0]
   end
 
   def destroy

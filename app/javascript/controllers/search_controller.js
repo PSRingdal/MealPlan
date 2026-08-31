@@ -4,7 +4,8 @@ const ENDPOINTURL = "https://www.themealdb.com/api/json/v1/1/search.php"
 
 const mealPlanCard = (meal) => {
   return `
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12" >
       <div class="card mb-2">
         <img src="${meal.strMealThumb}">
         <div class="card-body">
@@ -18,6 +19,7 @@ const mealPlanCard = (meal) => {
 export default class extends Controller {
   static targets = ["form", "inputField", "mealCards"]
   connect() {
+    console.log("hello")
   }
 
   fetchMeals() {
@@ -40,4 +42,5 @@ export default class extends Controller {
     event.preventDefault();
     this.fetchMeals()
   }
+
 }

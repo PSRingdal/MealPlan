@@ -1,0 +1,15 @@
+.meal-row {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  gap: 12px;
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+}
+
+.card-body h2 {
+  font-size: 16px;
+}

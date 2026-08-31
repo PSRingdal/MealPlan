@@ -1,0 +1,35 @@
+.d-none {
+  display: none;
+}
+
+.show-card-img  {
+  width: 100%;
+  max-width: 450px;
+  height: 450px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-wrapper {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+}
+
+.show-container {
+  width: 800px;
+  margin: 0 auto;
+  height: auto;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredient-row{
+  display: flex;
+  justify-content: space-between;
+}
