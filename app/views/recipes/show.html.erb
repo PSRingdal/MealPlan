@@ -27,7 +27,7 @@
           <% instructions = @recipe["strInstructions"].split(/\r?\n/)
           .map(&:strip)
           .reject(&:empty?)
-          .map { |line| line.sub(/^(step\s*\d+[:.)-]?\s*|\d+[:.)-]\s*)/i, "") } %>
+          .map { |line| line.sub(/^\s*(step\s*\d+[:.)-]?\s*|\d+[:.)-]\s*)/i, "") } %>
 
           <ol>
             <% instructions.each do |value| %>

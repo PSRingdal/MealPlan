@@ -9,11 +9,13 @@
       </div>
     </form>
 
-    <div>
-      <div data-search-target="mealCards" data-category-target="mealCards">
-
-
-      </div>
+    <div  data-search-target="mealCards" data-category-target="mealCards">
+      <% @categories.each do |category| %>
+        <div
+          data-category-target="category"
+          data-category-name="<%= category %>">
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

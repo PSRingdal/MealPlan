@@ -1,13 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 const FILTERURL = "https://www.themealdb.com/api/json/v1/1/filter.php"
-const LISTURL = "https://www.themealdb.com/api/json/v1/1/categories.php"
 
 const mealPlanCard = (meal) => {
   return `
   <a href="/recipes/${meal.idMeal}" class="recipe-link">
     <div>
-      <div class="card mb-2" data-id="${meal.idMeal}" data-action="click->recipe-show#showcard">
+      <div class="card mb-2">
         <img src="${meal.strMealThumb}">
       </div>
       <div class="card-body">
@@ -19,45 +18,34 @@ const mealPlanCard = (meal) => {
 }
 
 export default class extends Controller {
-  static targets = ["mealCards"]
+  static targets = ["mealCards", "category"]
   connect() {
     this.fetchCategories()
   }
-fetchCategories() {
-  const url = LISTURL
+  fetchCategories() {
+    this.categoryTargets.forEach((categoryElement) => {
+      const categoryName = categoryElement.dataset.categoryName
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      data.categories.forEach((category) => {
+      const section = document.createElement("div")
+      section.classList.add("category-section")
+      section.insertAdjacentHTML("beforeend", `<h2>${categoryName}</h2>`)
 
-        const section = document.createElement("div")
-        section.classList.add("category-section")
+      const row = document.createElement("div")
+      row.classList.add("meal-row")
 
-        section.insertAdjacentHTML("beforeend", `<h2>${category.strCategory}</h2>`)
+      const url = `${FILTERURL}?c=${categoryName}`
 
-        const row = document.createElement("div")
-        row.classList.add("meal-row")
-
-        const endpoint = `${FILTERURL}?c=${category.strCategory}`
-
-        fetch(endpoint)
-          .then(response => response.json())
-          .then(data => {
-
-            data.meals.forEach((meal) => {
-              const cardHTML = mealPlanCard(meal)
-              row.insertAdjacentHTML("beforeend", cardHTML)
-            })
-
-            section.appendChild(row)
-            this.mealCardsTarget.appendChild(section)
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          data.meals.forEach((meal) => {
+            const cardHTML = mealPlanCard(meal)
+            row.insertAdjacentHTML("beforeend", cardHTML)
           })
-      })
+
+          section.appendChild(row)
+          this.mealCardsTarget.appendChild(section)
+        })
     })
-}
-
-
-
-
+  }
 }
