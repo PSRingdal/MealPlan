@@ -8,6 +8,21 @@
 .card {
   width: 200px;
   height: 200px;
+  position: relative;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ffff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
 }
 
 .card-body h2 {

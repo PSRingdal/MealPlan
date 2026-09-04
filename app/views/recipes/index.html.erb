@@ -9,7 +9,7 @@
       </div>
     </form>
 
-    <div  data-search-target="mealCards" data-category-target="mealCards">
+    <div  data-search-target="mealCards" data-category-target="mealCards" >
       <% @categories.each do |category| %>
         <div
           data-category-target="category"
@@ -17,5 +17,12 @@
         </div>
       <% end %>
     </div>
+      <div class="selected-meals" data-category-target="selectedMeals">
+        <button class="btn btn-success bottom-btn">Build plan</button>
+        <p>Selected <span data-category-target="selectedCount">0</span></p>
+      </div>
   </div>
+
+
+
 </div>

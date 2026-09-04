@@ -3,10 +3,13 @@ import { Controller } from "@hotwired/stimulus"
 const FILTERURL = "https://www.themealdb.com/api/json/v1/1/filter.php"
 
 const mealPlanCard = (meal) => {
+
   return `
+
   <a href="/recipes/${meal.idMeal}" class="recipe-link">
     <div>
       <div class="card mb-2">
+        <i class="fa-solid fa-plus toggle-icon" data-action="click->category#selectMeal"  data-category-target="addIcon"></i>
         <img src="${meal.strMealThumb}">
       </div>
       <div class="card-body">
@@ -17,11 +20,13 @@ const mealPlanCard = (meal) => {
   `
 }
 
+
 export default class extends Controller {
-  static targets = ["mealCards", "category"]
+  static targets = ["mealCards", "category", "selectedMeals", "addIcon","selectedCount"]
   connect() {
     this.fetchCategories()
   }
+
   fetchCategories() {
     this.categoryTargets.forEach((categoryElement) => {
       const categoryName = categoryElement.dataset.categoryName
@@ -47,5 +52,18 @@ export default class extends Controller {
           this.mealCardsTarget.appendChild(section)
         })
     })
+  }
+
+  selectMeal(event){
+    console.log("addMeal controller")
+    event.preventDefault()
+
+    if (event.currentTarget.classList.contains("fa-plus")) {
+      event.currentTarget.classList.replace('fa-plus', 'fa-check')
+      this.selectedCountTarget.innerHTML = parseInt(this.selectedCountTarget.innerHTML) + 1
+    } else if (event.currentTarget.classList.contains("fa-check")) {
+      event.currentTarget.classList.replace('fa-check', 'fa-plus')
+      this.selectedCountTarget.innerHTML = parseInt(this.selectedCountTarget.innerHTML) - 1
+    }
   }
 }
