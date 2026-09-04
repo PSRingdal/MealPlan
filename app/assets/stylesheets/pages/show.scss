@@ -33,26 +33,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-
-
-.selected-meals {
-  position: fixed;
-  border-top: 1px solid  black;
-  bottom: 0;
-  width: 800px;
-  height: 80px;
-  background-color: #FAF6F0;
-  z-index: 4;
-}
-
-.bottom-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 20px;
-}
-
-.active {
-background-color: blue;
-}

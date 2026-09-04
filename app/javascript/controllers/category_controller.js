@@ -58,12 +58,21 @@ export default class extends Controller {
     console.log("addMeal controller")
     event.preventDefault()
 
+    let count = parseInt(this.selectedCountTarget.innerHTML)
+
     if (event.currentTarget.classList.contains("fa-plus")) {
       event.currentTarget.classList.replace('fa-plus', 'fa-check')
-      this.selectedCountTarget.innerHTML = parseInt(this.selectedCountTarget.innerHTML) + 1
+      this.selectedCountTarget.innerHTML = count += 1
     } else if (event.currentTarget.classList.contains("fa-check")) {
       event.currentTarget.classList.replace('fa-check', 'fa-plus')
-      this.selectedCountTarget.innerHTML = parseInt(this.selectedCountTarget.innerHTML) - 1
+      this.selectedCountTarget.innerHTML = count -= 1
+    }
+
+
+    if (count > 0) {
+      this.selectedMealsTarget.classList.remove("d-none")
+    } else {
+      this.selectedMealsTarget.classList.add("d-none")
     }
   }
 }
