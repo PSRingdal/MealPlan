@@ -7,7 +7,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe.user = current_user
   end
 
   def show

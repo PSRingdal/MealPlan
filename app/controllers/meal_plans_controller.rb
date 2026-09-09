@@ -13,10 +13,9 @@ class MealPlansController < ApplicationController
 
     meal_ids.each do |id|
       recipe = fetch_recipe(id)
-      @recipe = @meal_plan.recipes.new(title: recipe["strMeal"])
+      @recipe = @meal_plan.recipes.new(title: recipe["strMeal"], image_url: recipe["strMealThumb"])
       @recipe.user = current_user
       @recipe.save
-
       @join = @meal_plan.meal_plan_recipes.new(recipe: @recipe)
       @join.save
     end

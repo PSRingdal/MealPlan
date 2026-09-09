@@ -1,1 +1,12 @@
-<h1>Meal Plan</h1>
+<div class="container">
+  <h1>Meal Plan</h1>
+
+  <div class="card">
+    <% @meal_plans.each do |meal_plan|%>
+        <%  meal_plan.recipes.each do |recipe| %>
+          <%= image_tag recipe.image_url %>
+          <%= recipe.title  %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
