@@ -9,8 +9,22 @@ class MealPlansController < ApplicationController
   end
 
   def show
-    @meal_plan = MealPlan.find(params[:id])
-    @recipes = @meal_plan.recipes
+  end
+
+  def review
+    if request.post?
+      session[:meal_ids] = params[:meal_ids]
+      head :ok
+    else
+      @recipes = []
+      meal_ids = session[:meal_ids]
+      meal_ids.each do |id|
+      url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
+      response = URI.open(url).read
+      data = JSON.parse(response)
+      @recipes << data["meals"][0]
+      end
+    end
   end
 
   def destroy

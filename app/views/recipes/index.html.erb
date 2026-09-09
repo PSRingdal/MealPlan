@@ -1,7 +1,7 @@
 <div class="container ">
   <h1>Build a meal plan</h1>
 
-  <div class="search-recipe" data-controller="search category">
+  <div class="search-recipe" data-controller="search category meal-plan-review">
     <form data-search-target="form" data-action="submit->search#submit">
       <div class="form-group d-flex">
         <input type="text" class="form-control" data-search-target="inputField">
@@ -18,7 +18,7 @@
       <% end %>
     </div>
       <div class="selected-meals d-none" data-category-target="selectedMeals">
-        <button class="btn btn-success bottom-btn">Build plan</button>
+      <%= link_to "Build plan", meal_plans_review_path, class: "bottom-btn btn btn-secondary", data: { action: "click->meal-plan-review#review" } %>
         <p class="selected-info">
           Selected <span data-category-target="selectedCount">0</span>
         </p>

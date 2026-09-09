@@ -9,7 +9,7 @@ const mealPlanCard = (meal) => {
   <a href="/recipes/${meal.idMeal}" class="recipe-link">
     <div>
       <div class="card mb-2">
-        <i class="fa-solid fa-plus toggle-icon" data-action="click->category#selectMeal"  data-category-target="addIcon"></i>
+        <i class="fa-solid fa-plus toggle-icon" data-action="click->category#selectMeal" data-meal-id="${meal.idMeal}"   data-meal-plan-review-target="addIcon"></i>
         <img src="${meal.strMealThumb}">
       </div>
       <div class="card-body">
@@ -22,7 +22,7 @@ const mealPlanCard = (meal) => {
 
 
 export default class extends Controller {
-  static targets = ["mealCards", "category", "selectedMeals", "addIcon","selectedCount"]
+  static targets = ["mealCards", "category", "selectedMeals", "addIcon","selectedCount", "reviewMealPlan", "card"]
   connect() {
     this.fetchCategories()
   }
@@ -68,11 +68,11 @@ export default class extends Controller {
       this.selectedCountTarget.innerHTML = count -= 1
     }
 
-
     if (count > 0) {
       this.selectedMealsTarget.classList.remove("d-none")
     } else {
       this.selectedMealsTarget.classList.add("d-none")
     }
   }
+
 }

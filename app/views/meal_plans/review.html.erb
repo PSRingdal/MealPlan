@@ -1,0 +1,18 @@
+<div class="container">
+
+  <h1>Review your plan</h1>
+  <div data-controller="meal-plam-review">
+    <div data-categoty-target="reviewMealPlan">
+      <% @recipes.each do |recipe|%>
+
+        <div class="review-card">
+          <img class="review-img" src="<%=recipe["strMealThumb"] %>">
+          <div class="card-body">
+            <h2><%= recipe["strMeal"]%></h2>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
