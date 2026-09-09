@@ -7,20 +7,24 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new
-    @recipe.save
+    @recipe.user = current_user
   end
 
   def show
-    id = params[:id]
-    url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
-    response = URI.open(url).read
-    data = JSON.parse(response)
-    @recipe = data["meals"][0]
+    @recipe = fetch_recipe(params[:id])
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
+  end
+
+  private
+
+  def fetch_recipe(id)
+    url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
+    response = URI.open(url).read
+    data = JSON.parse(response)
+    data["meals"][0]
   end
 end
