@@ -1,6 +1,4 @@
 class MealPlansController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
-
   def index
      @meal_plans = current_user.meal_plans
   end

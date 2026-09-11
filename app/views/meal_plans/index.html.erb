@@ -1,12 +1,16 @@
 <div class="container">
   <h1>Meal Plan</h1>
 
-  <div class="card">
+  <div class="d-flex">
     <% @meal_plans.each do |meal_plan|%>
-        <%  meal_plan.recipes.each do |recipe| %>
-          <%= image_tag recipe.image_url %>
-          <%= recipe.title  %>
-        <% end %>
+      <%  meal_plan.recipes.each do |recipe| %>
+        <div >
+          <div class="card mb-4">
+            <%= image_tag recipe.image_url %>
+            <%= recipe.title  %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
