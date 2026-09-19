@@ -4,9 +4,21 @@ class RecipesController < ApplicationController
     response = URI.open(url).read
     data = JSON.parse(response)
     @categories = data["categories"].map { |category| category["strCategory"] }
+    load_recipes
   end
 
   def create
+  end
+
+
+
+  def review
+    session[:meal_ids] = params[:meal_ids]
+  load_recipes
+
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 
   def show
@@ -25,5 +37,14 @@ class RecipesController < ApplicationController
     response = URI.open(url).read
     data = JSON.parse(response)
     data["meals"][0]
+  end
+
+  def load_recipes
+    @recipes = []
+    meal_ids = session[:meal_ids] || []
+
+    meal_ids.each do |id|
+    @recipes << fetch_recipe(id)
+    end
   end
 end

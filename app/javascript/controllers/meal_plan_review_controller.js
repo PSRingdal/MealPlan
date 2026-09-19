@@ -1,15 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["addIcon"]
+    static targets = ["addIcon", "sidebar"]
 
 
   connect() {
     console.log("connected")
   }
 
-  async review(event) {
-    event.preventDefault();
+  async review() {
 
     const ids = [];
 
@@ -19,14 +18,20 @@ export default class extends Controller {
       }
     });
 
-    await fetch("/meal_plans/review", {
+   const response = await fetch("/recipes/review", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Accept": "text/vnd.turbo-stream.html",
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
       },
       body: JSON.stringify({ meal_ids: ids })
     });
-      window.location.href = "/meal_plans/review";
+    const html = await response.text()
+    Turbo.renderStreamMessage(html)
+  }
+
+  openSidebar() {
+   this.sidebarTarget.classList.toggle("open");
   }
 }

@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "review_sidebar" do %>
+  <%= turbo_frame_tag "review_sidebar" do %>
+    <%= render "shared/sidenav", recipes: @recipes %>
+  <% end %>
+<% end %>

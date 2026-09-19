@@ -17,23 +17,10 @@ class MealPlansController < ApplicationController
       @join = @meal_plan.meal_plan_recipes.new(recipe: @recipe)
       @join.save
     end
+        redirect_to meal_plans_path, status: :see_other
   end
-
 
   def show
-  end
-
-  def review
-    if request.post?
-      session[:meal_ids] = params[:meal_ids]
-      head :ok
-    else
-      @recipes = []
-      meal_ids = session[:meal_ids]
-      meal_ids.each do |id|
-        @recipes << fetch_recipe(id)
-      end
-    end
   end
 
   def destroy

@@ -9,7 +9,10 @@ const mealPlanCard = (meal) => {
   <a href="/recipes/${meal.idMeal}" class="recipe-link">
     <div>
       <div class="card mb-2">
-        <i class="fa-solid fa-plus toggle-icon" data-action="click->category#selectMeal" data-meal-id="${meal.idMeal}" data-meal-plan-review-target="addIcon"></i>
+      <i class="fa-solid fa-plus toggle-icon"
+      data-action="click->category#selectMeal click->meal-plan-review#review"
+      data-meal-id="${meal.idMeal}"
+      data-meal-plan-review-target="addIcon"></i>
         <img src="${meal.strMealThumb}">
       </div>
       <div class="card-body">
