@@ -1,7 +1,9 @@
 <div class="container">
-  <h1>Meal Plan</h1>
-
-  <div class="d-flex">
+  <div class="meal-plan-hero">
+    <h1>Your meal plans</h1>
+    <p>View and manage the recipes you've added to your meal plan</p>
+  </div>
+  <div class="cards-container">
     <% @meal_plans.each do |meal_plan|%>
       <%  meal_plan.recipes.each do |recipe| %>
         <div >

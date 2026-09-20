@@ -3,7 +3,7 @@
       <% if user_signed_in? %>
         <div class="d-flex align-items-center gap-3">
           <i class="fa-solid fa-utensils"></i>
-          <h1 class="navbar-header">Easy Plate</h1>
+          <%= link_to "Easy Plate", meal_plans_path, class: "navbar-header"  %>
           <form data-search-target="form" data-action="submit->search#submit">
             <div class="form-group d-flex align-items-center">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -14,9 +14,13 @@
 
         <div class="d-flex align-items-center gap-3">
           <div data-category-target="selectedMeals">
+            <% if current_page?(recipes_path) %>
             <button class=" your-plan-btn btn btn-dark rounded-pill" data-action="click->meal-plan-review#openSidebar">
                Your plan <span data-category-target="selectedCount" class="selected-count">0</span>
             </button>
+            <% else %>
+            <%= link_to "+ Add recipe", recipes_path, class: "btn btn-dark rounded-pill" %>
+            <%end %>
           </div>
           <i class="fa-solid fa-gear"></i>
         </div>

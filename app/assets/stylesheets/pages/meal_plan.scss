@@ -1,0 +1,21 @@
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 4px;
+}
+
+.meal-plan-hero {
+  padding: 56px 0;
+
+  h1 {
+    font-size: 44px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 14px 0 0;
+    color: #6b6a5d;
+    font-size: 18px;
+
+  }
+}
