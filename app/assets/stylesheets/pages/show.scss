@@ -4,18 +4,17 @@
 
 .show-card-img  {
   width: 100%;
-  max-width: 450px;
+  max-width: 650px;
   height: 450px;
   object-fit: cover;
   object-position: center;
+  border-radius: 12px;
 }
 
 .card-wrapper {
-  width: 450px;
-  display: flex;
-  flex-direction: column;
+  width: 1200px;
   margin: 0 auto;
-
+  padding: 28px 32px 100px;
 }
 
 .show-container {
@@ -32,4 +31,74 @@
 .ingredient-row{
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  padding: 10px 0;
+}
+
+.show-recipe-info span {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.show-recipe-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.recipe-info-card {
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+ .tags span {
+    background-color: lightblue;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 12px;
+  }
+
+    .show-info-btn {
+    display: flex;
+    align-items: center;
+    color: #ffff;
+    background-color: #2e4034;
+    font-weight: 600;
+    padding: 13px 22px;
+    height: 48px;
+  }
+
+}
+
+.recipe-body-card {
+  margin-top: 44px;
+  background-color: #ffff;
+  border: 1px solid lightgray;
+  padding: 26px;
+  border-radius: 12px;
+}
+
+.instructions-list {
+  border-bottom: 1px solid lightgray;
+  padding: 10px 0;
+}
+
+.instructions-list::marker {
+  color: #2E4034 ;
+  font-weight: 700;
+  font-size: 19px;
+
+}
+
+.fa-bookmark {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: #ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e4a93b;
 }
