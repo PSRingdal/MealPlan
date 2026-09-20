@@ -1,10 +1,31 @@
 .review-card {
   display: flex;
-  border-bottom: 1px solid grey;
-  margin-bottom: 10px;
+  align-items: center;
+  border-bottom: 1px solid #E3E1D3;
+  gap: 12px;
+  padding: 12px 0;
+
+  .fa-circle-minus {
+    color: #B23A3A;
+  }
 }
 .review-img {
-  height: 80px;
-  width: 80px;
-  border-radius: 4px;
+  height: 48px;
+  width: 48px;
+  border-radius: 10px;
+}
+
+.review-meal, .review-category{
+  color: black;
+}
+
+.review-body  {
+
+  h2 {
+  font-size: 16px;
+  }
+
+  h2, small {
+    margin: 0;
+  }
 }

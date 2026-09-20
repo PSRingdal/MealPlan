@@ -9,9 +9,53 @@
   background-color: #ffff;
   overflow-x: hidden;
   transition: transform 0.3s ease;
-  padding-top: 60px;
+}
+
+.sidebar-header {
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  padding: 24px 24px 16px;
+  height: 89px;
+  border-bottom: 1px solid #E3E1D3;
+}
+
+.sidebar-content {
+  padding: 12px 24px;
+}
+
+.sidebar-footer {
+  padding: 18px 24px 24px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #E3E1D3;
 }
 
 .sidebar.open {
   transform: translateX(0);
+}
+
+.fa-xmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5F6EF;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.sidebar-content a {
+  text-decoration: none;
+}
+
+.sidebar-btn {
+  color: #ffff;
+  background-color: #3d5645;
 }

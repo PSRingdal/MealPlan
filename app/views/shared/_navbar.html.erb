@@ -1,19 +1,22 @@
-<nav class="navbar navbar-expand-sm border-bottom border-light">
+<nav class="navbar navbar-expand-sm">
   <div class="container-fluid">
       <% if user_signed_in? %>
         <div class="d-flex align-items-center gap-3">
           <i class="fa-solid fa-utensils"></i>
-          <h1>Easy Plate</h1>
+          <h1 class="navbar-header">Easy Plate</h1>
           <form data-search-target="form" data-action="submit->search#submit">
-            <div class="form-group d-flex">
-              <input type="text" class="form-control" data-search-target="inputField" placeholder="Search dishes">
+            <div class="form-group d-flex align-items-center">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" class="nav-search form-control" data-search-target="inputField" placeholder="Search dishes, ingredients, cuisines...">
             </div>
           </form>
         </div>
 
         <div class="d-flex align-items-center gap-3">
           <div data-category-target="selectedMeals">
-            <button class="btn btn-dark rounded-pill" data-action="click->meal-plan-review#openSidebar"> Your plan <span data-category-target="selectedCount">0</span></button>
+            <button class=" your-plan-btn btn btn-dark rounded-pill" data-action="click->meal-plan-review#openSidebar">
+               Your plan <span data-category-target="selectedCount" class="selected-count">0</span>
+            </button>
           </div>
           <i class="fa-solid fa-gear"></i>
         </div>

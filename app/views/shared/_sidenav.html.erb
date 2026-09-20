@@ -1,20 +1,31 @@
-  <div>
+  <div class=" sidebar-header d-flex align-items-center justify-content-between">
     <h1>Your plan</h1>
-    <i class="fa-solid fa-xmark"></i>
+    <i class="fa-solid fa-xmark" data-action="click->meal-plan-review#openSidebar"></i>
   </div>
   <div data-controller="meal-plan-review">
     <div data-categoty-target="reviewMealPlan">
-      <% recipes.each do |recipe|%>
 
-      <a href=" /recipes/<%= recipe["idMeal"] %>">
-        <div class="review-card">
-          <img class="review-img" src="<%=recipe["strMealThumb"] %>">
-          <div class="card-body">
-            <h2><%= recipe["strMeal"]%></h2>
+      <div class="sidebar-content">
+        <% recipes.each do |recipe|%>
+
+        <a href=" /recipes/<%= recipe["idMeal"] %>">
+          <div class="review-card d-flex justify-content-between">
+            <div class="d-flex gap-3">
+              <img class="review-img" src="<%=recipe["strMealThumb"] %>">
+              <div class="review-body">
+                <h2 class="review-meal"><%= recipe["strMeal"]%></h2>
+                <small class="review-category"><%= recipe["strCategory"]%></small>
+              </div>
+            </div>
+            <i class="fa-solid fa-circle-minus"></i>
           </div>
-        </div>
-      </a>
-      <% end %>
+        </a>
+        <% end %>
+      </div>
     </div>
-    <%= link_to "Build your plan",  meal_plans_path, data: { turbo_method: :post, turbo_frame: "_top" }, class: "btn btn-secondary"  %>
+
+    <div class="sidebar-footer">
+      <%= link_to "Build your plan",  meal_plans_path, data: { turbo_method: :post, turbo_frame: "_top" }, class: " sidebar-btn btn w-100" %>
+    </div>
+
   </div>

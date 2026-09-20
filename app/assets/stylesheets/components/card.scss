@@ -5,10 +5,18 @@
   gap: 12px;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .card {
   width: 200px;
   height: 200px;
   position: relative;
+}
+
+.card img {
+  border-radius: 4px;
 }
 
 .toggle-icon {
@@ -26,7 +34,9 @@
 }
 
 .card-body h2 {
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 600;
+
 }
 
 .recipe-link {

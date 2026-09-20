@@ -9,10 +9,10 @@ const mealPlanCard = (meal) => {
   <a href="/recipes/${meal.idMeal}" class="recipe-link">
     <div>
       <div class="card mb-2">
-      <i class="fa-solid fa-plus toggle-icon"
-      data-action="click->category#selectMeal click->meal-plan-review#review"
-      data-meal-id="${meal.idMeal}"
-      data-meal-plan-review-target="addIcon"></i>
+        <i class="fa-solid fa-plus toggle-icon"
+        data-action="click->category#selectMeal click->meal-plan-review#review"
+        data-meal-id="${meal.idMeal}"
+        data-meal-plan-review-target="addIcon"></i>
         <img src="${meal.strMealThumb}">
       </div>
       <div class="card-body">
@@ -36,7 +36,7 @@ export default class extends Controller {
 
       const section = document.createElement("div")
       section.classList.add("category-section")
-      section.insertAdjacentHTML("beforeend", `<h2>${categoryName}</h2>`)
+      section.insertAdjacentHTML("beforeend", `<h2 class="category-name">${categoryName}</h2>`)
 
       const row = document.createElement("div")
       row.classList.add("meal-row")
@@ -65,17 +65,15 @@ export default class extends Controller {
 
     if (event.currentTarget.classList.contains("fa-plus")) {
       event.currentTarget.classList.replace('fa-plus', 'fa-check')
+      event.currentTarget.style.color ="white"
+      event.currentTarget.style.background ="#3D5645"
       this.selectedCountTarget.innerHTML = count += 1
     } else if (event.currentTarget.classList.contains("fa-check")) {
       event.currentTarget.classList.replace('fa-check', 'fa-plus')
+      event.currentTarget.style.color ="black"
+      event.currentTarget.style.background ="white"
       this.selectedCountTarget.innerHTML = count -= 1
     }
-
-    // if (count > 0) {
-    //   this.selectedMealsTarget.classList.remove("d-none")
-    // } else {
-    //   this.selectedMealsTarget.classList.add("d-none")
-    // }
   }
 
 }
