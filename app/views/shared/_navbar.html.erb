@@ -22,7 +22,9 @@
             <%= link_to "+ Add recipe", recipes_path, class: "btn btn-dark rounded-pill" %>
             <%end %>
           </div>
+          <%= link_to profile_path do  %>
           <i class="fa-solid fa-gear"></i>
+          <% end %>
         </div>
 
       <% else %>

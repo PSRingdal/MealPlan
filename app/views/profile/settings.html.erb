@@ -1,0 +1,39 @@
+<div class="settings-page" data-controller="settings">
+  <div class="row">
+    <div class="col-3">
+      <div class="settings-sidebar">
+        <h1>Settings</h1>
+
+        <nav class="settings-nav">
+
+         <button class="btn settings-link" data-action="click->settings#showAccount">
+            Account
+          </button>
+
+          <button class="btn settings-link" data-action="click->settings#showPrivacy">
+            Privacy & Security
+          </button>
+
+          <%= button_to "Sign Out",
+              destroy_user_session_path,
+              method: :delete,
+              class: "btn settings-link sign-out-btn" %>
+        </nav>
+      </div>
+    </div>
+
+    <div class="col-9">
+      <div class="settings-content">
+
+        <div class="account" data-settings-target="account">
+          <%= render "profile/account" %>
+        </div>
+
+        <div class="privacy d-none" data-settings-target="privacy">
+          <%= render "profile/privacy"%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

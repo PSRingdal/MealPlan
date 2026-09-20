@@ -1,0 +1,42 @@
+<h1>Privacy & Security</h1>
+<%= simple_form_for(current_user,
+    as: :user,
+    url: registration_path(:user),
+    html: { method: :put }) do |f| %>
+
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :password,
+                hint: "Leave blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+
+    <%= f.input :password_confirmation,
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+
+    <%= f.input :current_password,
+                hint: "We need your current password to confirm your changes",
+                required: true,
+                input_html: { autocomplete: "current-password" } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Save Changes", class: "btn btn-dark" %>
+  </div>
+<% end %>
+
+
+<div class="delete-account mt-3">
+  <h3>Delete my account</h3>
+  <p>Permanently delete your account and all associated data. <br>
+  This action cannot be undone.</p>
+  <%= button_to "Delete my account",
+      registration_path(:user),
+      method: :delete,
+      class: "btn mt-3",
+      data: {
+        turbo_confirm: "Are you sure?"
+      } %>
+</div>
