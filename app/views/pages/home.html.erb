@@ -1,2 +1,31 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="row pt-5">
+    <div class="col-6">
+      <div class="home-page">
+        <h1>Meals, sorted for the whole week.</h1>
+        <p>
+          Easy Plate helps you discover recipes,
+          organise your meals and plan your week,
+          all in one place.
+        </p>
+        <%= link_to "Plan Your First Week", new_user_registration_path, class: "btn btn-dark"%>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="hero-images">
+        <%= image_tag "food-jar.jpg",
+          alt: "Food-jar",
+          class: "food-jar-img" %>
+
+        <%= image_tag "container.jpg",
+          alt: "Salmon meal prep",
+          class: "salmon-img" %>
+
+        <%= image_tag "mealprep.jpg",
+          alt: "Meal prep containers",
+          class: "mealprep-img" %>
+      </div>
+    </div>
+  </div>
+</div>

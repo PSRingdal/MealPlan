@@ -1,0 +1,54 @@
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 496px;
+  h1 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  p{
+    font-size: 20px;
+  line-height: 1.6;
+  color: #6b7280;
+
+  }
+}
+
+.hero-images {
+  display: grid;
+  grid-template-columns: 290px 240px;
+  grid-template-rows: 290px 190px;
+  gap: 16px;
+  justify-content: center;
+}
+
+.food-jar-img {
+  grid-column: 1;
+  grid-row: 1;
+  width: 290px;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.mealprep-img {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 240px;
+  height: 496px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.salmon-img {
+  grid-column: 1;
+  grid-row: 2;
+  width: 290px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 24px;
+}

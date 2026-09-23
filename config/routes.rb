@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   post "recipes/review", to: "recipes#review"
-  get "profile", to: "profile#settings"
+  get "settings", to: "profile#settings"
 
 
   resources :meal_plans, only: [ :index, :show, :create, :destroy ] do
