@@ -25,6 +25,10 @@ class RecipesController < ApplicationController
     redirect_back fallback_location: recipes_path
   end
 
+  def saved
+    @recipes = current_user.recipes.where(saved: true)
+  end
+
   def unsave
     @recipe = current_user.recipes.find(params[:id])
     @recipe.destroy

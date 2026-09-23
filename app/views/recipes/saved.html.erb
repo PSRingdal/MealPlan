@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Your Favourits</h1>
+  <div class="cards-container">
+    <% @recipes.each do |recipe|%>
+      <div class="card mb-4">
+        <%= image_tag recipe.image_url %>
+        <%= recipe.title  %>
+      </div>
+     <% end %>
+  </div>
+</div>
