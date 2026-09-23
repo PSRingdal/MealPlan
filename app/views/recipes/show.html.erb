@@ -57,7 +57,15 @@
 
           <div class="d-flex gap-3">
             <button class="show-info-btn btn">+ Add recipe</button>
-            <i class="fa-solid fa-bookmark"></i>
+            <% if @existing_recipe.present? %>
+              <%= button_to unsave_recipe_path(@existing_recipe), class: "border-0" do %>
+                <i class="fa-solid fa-bookmark saved"></i>
+              <% end %>
+            <% else %>
+              <%= button_to save_recipe_path(@recipe), class: "border-0" do %>
+                <i class="fa-regular fa-bookmark"></i>
+              <% end %>
+            <% end %>
           </div>
         </div>
 

@@ -7,14 +7,34 @@ class RecipesController < ApplicationController
     load_recipes
   end
 
-  def create
+  def save
+    recipe = fetch_recipe(params[:id])
+
+    existing_recipe = current_user.recipes.find_by(title: recipe["strMeal"])
+
+    if existing_recipe.blank?
+      @recipe = current_user.recipes.new(
+        title: recipe["strMeal"],
+        image_url: recipe["strMealThumb"],
+        saved: true
+      )
+
+      @recipe.save
+    end
+
+    redirect_back fallback_location: recipes_path
   end
 
+  def unsave
+    @recipe = current_user.recipes.find(params[:id])
+    @recipe.destroy
 
+    redirect_back fallback_location: recipes_path
+  end
 
   def review
     session[:meal_ids] = params[:meal_ids]
-  load_recipes
+    load_recipes
 
     respond_to do |format|
       format.turbo_stream
@@ -23,6 +43,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = fetch_recipe(params[:id])
+    @existing_recipe = current_user.recipes.find_by(title: @recipe["strMeal"])
   end
 
   def destroy

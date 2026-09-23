@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  post "recipes/review", to: "recipes#review"
   get "settings", to: "profile#settings"
 
 
@@ -23,6 +22,9 @@ Rails.application.routes.draw do
     resources :meal_plan_recipes, only: [ :create, :destroy ]
   end
 
+  post "recipes/review", to: "recipes#review"
+  post "recipes/:id/save", to: "recipes#save", as: :save_recipe
+  post "recipes/:id/unsave", to: "recipes#unsave", as: :unsave_recipe
 
-  resources :recipes, only: [ :index, :show, :create, :destroy ]
+  resources :recipes, only: [ :index, :show, :destroy ]
 end
