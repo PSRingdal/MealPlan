@@ -12,6 +12,7 @@ const mealPlanCard = (meal) => {
         <i class="fa-solid fa-plus toggle-icon"
         data-action="click->category#selectMeal click->meal-plan-review#review"
         data-meal-id="${meal.idMeal}"
+        data-category-target="icon"
         data-meal-plan-review-target="addIcon"></i>
         <img src="${meal.strMealThumb}">
       </div>
@@ -25,7 +26,7 @@ const mealPlanCard = (meal) => {
 
 
 export default class extends Controller {
-  static targets = ["mealCards", "category", "selectedMeals", "addIcon","selectedCount", "reviewMealPlan", "card"]
+  static targets = ["mealCards", "category", "selectedMeals", "icon","selectedCount", "reviewMealPlan", "card", "recipe"]
   connect() {
     this.fetchCategories()
   }
@@ -63,6 +64,7 @@ export default class extends Controller {
 
     let count = parseInt(this.selectedCountTarget.innerHTML)
 
+
     if (event.currentTarget.classList.contains("fa-plus")) {
       event.currentTarget.classList.replace('fa-plus', 'fa-check')
       event.currentTarget.style.color ="white"
@@ -74,6 +76,28 @@ export default class extends Controller {
       event.currentTarget.style.background ="white"
       this.selectedCountTarget.innerHTML = count -= 1
     }
+
   }
 
+  removeBtn(event){
+    let count = parseInt(this.selectedCountTarget.innerHTML)
+
+    event.preventDefault()
+
+    const recipe = event.currentTarget.closest(".review-card")
+
+    this.iconTargets.forEach((icon) => {
+      if (icon.dataset.mealId === recipe.dataset.recipeId) {
+        icon.classList.replace('fa-check', 'fa-plus')
+        icon.style.color ="black"
+        icon.style.background ="white"
+      }
+    });
+
+    recipe.remove()
+
+
+    this.selectedCountTarget.innerHTML = count -= 1
+
+  }
 }

@@ -8,8 +8,8 @@
       <div class="sidebar-content">
         <% recipes.each do |recipe|%>
 
-        <a href=" /recipes/<%= recipe["idMeal"] %>">
-          <div class="review-card d-flex justify-content-between">
+        <a href="/recipes/<%= recipe["idMeal"] %>" data-turbo-frame="_top">
+          <div class="review-card d-flex justify-content-between" data-category-target="recipe" data-recipe-id=<%= recipe["idMeal"] %>>
             <div class="d-flex gap-3">
               <img class="review-img" src="<%=recipe["strMealThumb"] %>">
               <div class="review-body">
@@ -17,7 +17,7 @@
                 <small class="review-category"><%= recipe["strCategory"]%></small>
               </div>
             </div>
-            <i class="fa-solid fa-circle-minus"></i>
+            <i class="fa-solid fa-circle-minus remove-btn", data-action="click->category#removeBtn"></i>
           </div>
         </a>
         <% end %>

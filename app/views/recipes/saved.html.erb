@@ -1,11 +1,31 @@
-<div class="container">
-  <h1>Your Favourits</h1>
-  <div class="cards-container">
-    <% @recipes.each do |recipe|%>
-      <div class="card mb-4">
-        <%= image_tag recipe.image_url %>
-        <%= recipe.title  %>
-      </div>
-     <% end %>
+<div class="container pt-5">
+  <div class="fav-container">
+
+    <div class="fav-desc">
+      <h1>Your Favourites</h1>
+      <p>Recipes you've saved, ready to add to a meal plan.</p>
+    </div>
+
+    <div class="saved-recipes-grid">
+      <% @recipes.each do |recipe| %>
+
+        <div class="fav-card d-flex justify-content-between align-items-center">
+          <div class="d-flex gap-3 align-items-center">
+            <%= image_tag recipe.image_url, class: "fav-image" %>
+            <h2><%= recipe.title %></h2>
+          </div>
+
+          <div class="d-flex flex-column gap-4">
+            <%= button_to unsave_recipe_path(recipe), class: "border-0 bg-transparent" do %>
+              <i class="fa-solid fa-bookmark saved"></i>
+                          <i class="fa-solid fa-arrow-right-long"></i>
+
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+
   </div>
 </div>

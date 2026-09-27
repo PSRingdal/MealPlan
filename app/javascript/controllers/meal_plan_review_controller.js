@@ -34,4 +34,6 @@ export default class extends Controller {
   openSidebar() {
    this.sidebarTarget.classList.toggle("open");
   }
+
+
 }

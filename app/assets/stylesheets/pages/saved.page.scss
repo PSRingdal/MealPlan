@@ -1,0 +1,45 @@
+.fav-container {
+  background-color: #ffff;
+  padding: 40px;
+  border: 1px solid #f0ece3;
+  border-radius: 18px;
+
+  h1 {
+    font-size: 64px;
+    font-weight: 700;
+  }
+
+  h2{
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+
+.fav-desc {
+  margin-bottom: 32px;
+  border-bottom: 1px solid lightgray;
+}
+
+.saved-recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.fav-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.fav-card {
+  background-color: #faf8f4;
+  border: 1px solid #f0ece3;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

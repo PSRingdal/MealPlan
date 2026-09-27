@@ -15,9 +15,11 @@
         <div class="d-flex align-items-center gap-3">
           <div data-category-target="selectedMeals">
             <% if current_page?(recipes_path) %>
+            <%= turbo_frame_tag "review_count" do %>
             <button class=" your-plan-btn btn btn-dark rounded-pill" data-action="click->meal-plan-review#openSidebar">
                Your plan <span data-category-target="selectedCount" class="selected-count">0</span>
             </button>
+            <% end %>
             <% else %>
             <%= link_to "+ Add recipe", recipes_path, class: "btn btn-dark rounded-pill" %>
             <%end %>
