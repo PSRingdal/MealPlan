@@ -27,6 +27,7 @@ const mealPlanCard = (meal) => {
 
 export default class extends Controller {
   static targets = ["mealCards", "category", "selectedMeals", "icon","selectedCount", "reviewMealPlan", "card", "recipe"]
+
   connect() {
     this.fetchCategories()
   }
@@ -54,8 +55,20 @@ export default class extends Controller {
 
           section.appendChild(row)
           this.mealCardsTarget.appendChild(section)
+
+          const savedMealId = JSON.parse(sessionStorage.getItem("iconId"))
+          console.log("saved", savedMealId)
+
+          this.iconTargets.forEach((icon)=> {
+            if (savedMealId.includes((icon.dataset.mealId))) {
+              icon.classList.replace("fa-plus", "fa-check")
+              icon.style.color ="white"
+              icon.style.background = "#3D5645"
+            }
+          })
         })
     })
+
   }
 
   selectMeal(event){
@@ -63,7 +76,6 @@ export default class extends Controller {
     event.preventDefault()
 
     let count = parseInt(this.selectedCountTarget.innerHTML)
-
 
     if (event.currentTarget.classList.contains("fa-plus")) {
       event.currentTarget.classList.replace('fa-plus', 'fa-check')
@@ -77,6 +89,13 @@ export default class extends Controller {
       this.selectedCountTarget.innerHTML = count -= 1
     }
 
+    let ids = []
+    this.iconTargets.forEach((icon)=>{
+      if (icon.classList.contains("fa-check")) {
+          ids.push(icon.dataset.mealId)
+      }
+    })
+    sessionStorage.setItem("iconId", JSON.stringify(ids))
   }
 
   removeBtn(event){
@@ -91,7 +110,15 @@ export default class extends Controller {
         icon.classList.replace('fa-check', 'fa-plus')
         icon.style.color ="black"
         icon.style.background ="white"
+
+        const currentSession = sessionStorage.getItem("iconId")
+        const array = JSON.parse(currentSession)
+        const updatedSession = array.filter(function (ids) {
+          return ids !== icon.dataset.mealId
+        })
+          sessionStorage.setItem("iconId", JSON.stringify(updatedSession))
       }
+
     });
 
     recipe.remove()
@@ -100,4 +127,5 @@ export default class extends Controller {
     this.selectedCountTarget.innerHTML = count -= 1
 
   }
+
 }

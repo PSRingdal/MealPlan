@@ -11,16 +11,17 @@ class RecipesController < ApplicationController
     recipe = fetch_recipe(params[:id])
 
     existing_recipe = current_user.recipes.find_by(title: recipe["strMeal"])
-
     if existing_recipe.blank?
       @recipe = current_user.recipes.new(
         title: recipe["strMeal"],
         image_url: recipe["strMealThumb"],
+        external_id: recipe["idMeal"],
         saved: true
       )
 
       @recipe.save
     end
+
 
     redirect_back fallback_location: recipes_path
   end

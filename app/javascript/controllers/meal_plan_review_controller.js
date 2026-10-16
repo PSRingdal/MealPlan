@@ -18,6 +18,7 @@ export default class extends Controller {
       }
     });
 
+
    const response = await fetch("/recipes/review", {
       method: "POST",
       headers: {

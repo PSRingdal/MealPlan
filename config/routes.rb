@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post "recipes/review", to: "recipes#review"
   post "recipes/:id/save", to: "recipes#save", as: :save_recipe
   post "recipes/:id/unsave", to: "recipes#unsave", as: :unsave_recipe
+  patch "recipes/:id/check", to: "recipes#check", as: :check_recipe
   get "recipes/saved", to: "recipes#saved"
 
   resources :recipes, only: [ :index, :show, :destroy ]

@@ -4,13 +4,16 @@
     <p>View and manage the recipes you've added to your meal plan</p>
   </div>
 
-  <div class="cards-container">
-    <% @meal_plans.each do |meal_plan|%>
-      <%  meal_plan.recipes.each do |recipe| %>
-        <div class="card mb-4">
-          <%= image_tag recipe.image_url %>
-          <%= recipe.title  %>
-        </div>
+    <div class="cards-container">
+      <% @meal_plans.each do |meal_plan|%>
+        <%  meal_plan.recipes.each do |recipe| %>
+
+        <%= link_to recipe_path(recipe.external_id) do %>
+          <div class="card mb-4">
+            <%= image_tag recipe.image_url %>
+            <%= recipe.title  %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

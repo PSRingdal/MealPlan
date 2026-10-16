@@ -8,22 +8,21 @@
 
     <div class="saved-recipes-grid">
       <% @recipes.each do |recipe| %>
+        <%= link_to recipe_path(recipe.external_id) do %>
+          <div class="fav-card d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-3 align-items-center">
+              <%= image_tag recipe.image_url, class: "fav-image" %>
+              <h2><%= recipe.title %></h2>
+            </div>
 
-        <div class="fav-card d-flex justify-content-between align-items-center">
-          <div class="d-flex gap-3 align-items-center">
-            <%= image_tag recipe.image_url, class: "fav-image" %>
-            <h2><%= recipe.title %></h2>
+            <div class="d-flex flex-column gap-4">
+              <%= button_to unsave_recipe_path(recipe), class: "border-0 bg-transparent" do %>
+                <i class="fa-solid fa-bookmark saved"></i>
+                <i class="fa-solid fa-arrow-right-long"></i>
+              <% end %>
+            </div>
           </div>
-
-          <div class="d-flex flex-column gap-4">
-            <%= button_to unsave_recipe_path(recipe), class: "border-0 bg-transparent" do %>
-              <i class="fa-solid fa-bookmark saved"></i>
-                          <i class="fa-solid fa-arrow-right-long"></i>
-
-            <% end %>
-          </div>
-        </div>
-
+        <% end %>
       <% end %>
     </div>
 

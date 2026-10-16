@@ -4,15 +4,15 @@
       <h1>Build this week's plan</h1>
       <p>Plan your meals, organise your favourite recipes<br>Make every week a little easier</p>
     </div>
-      <div  data-search-target="mealCards" data-category-target="mealCards" >
 
-        <% @categories.each do |category| %>
-          <div
-            data-category-target="category"
-            data-category-name="<%= category %>">
-          </div>
-        <% end %>
-      </div>
+    <div data-search-target="mealCards" data-category-target="mealCards" >
+      <% @categories.each do |category| %>
+        <div
+          data-category-target="category"
+          data-category-name="<%= category %>">
+        </div>
+      <% end %>
+    </div>
 
     <div class="sidebar" data-meal-plan-review-target="sidebar">
       <%= turbo_frame_tag "review_sidebar" do %>
