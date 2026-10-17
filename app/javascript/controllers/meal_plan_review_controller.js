@@ -6,8 +6,6 @@ export default class extends Controller {
 
   connect() {
     console.log("connected")
-    console.log(this.element)
-  console.log(this.hasRecipeCountTarget)
   }
 
   async review() {

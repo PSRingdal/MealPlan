@@ -75,7 +75,7 @@ export default class extends Controller {
     console.log("addMeal controller")
     event.preventDefault()
 
-    let count = parseInt(this.selectedCountTarget.innerHTML)
+    let count = parseInt(this.selectedCountTarget.innerHTML, 10) || 0
 
     if (event.currentTarget.classList.contains("fa-plus")) {
       event.currentTarget.classList.replace('fa-plus', 'fa-check')

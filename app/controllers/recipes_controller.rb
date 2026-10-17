@@ -68,7 +68,6 @@ class RecipesController < ApplicationController
   def load_recipes
     @recipes = []
     meal_ids = session[:meal_ids] || []
-
     meal_ids.each do |id|
     @recipes << fetch_recipe(id)
     end
