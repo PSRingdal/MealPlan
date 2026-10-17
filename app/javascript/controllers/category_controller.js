@@ -26,7 +26,7 @@ const mealPlanCard = (meal) => {
 
 
 export default class extends Controller {
-  static targets = ["mealCards", "category", "selectedMeals", "icon","selectedCount", "reviewMealPlan", "card", "recipe"]
+  static targets = ["mealCards", "category", "selectedMeals", "icon","selectedCount", "reviewMealPlan", "card", "recipe",]
 
   connect() {
     this.fetchCategories()
@@ -96,36 +96,6 @@ export default class extends Controller {
       }
     })
     sessionStorage.setItem("iconId", JSON.stringify(ids))
-  }
-
-  removeBtn(event){
-    let count = parseInt(this.selectedCountTarget.innerHTML)
-
-    event.preventDefault()
-
-    const recipe = event.currentTarget.closest(".review-card")
-
-    this.iconTargets.forEach((icon) => {
-      if (icon.dataset.mealId === recipe.dataset.recipeId) {
-        icon.classList.replace('fa-check', 'fa-plus')
-        icon.style.color ="black"
-        icon.style.background ="white"
-
-        const currentSession = sessionStorage.getItem("iconId")
-        const array = JSON.parse(currentSession)
-        const updatedSession = array.filter(function (ids) {
-          return ids !== icon.dataset.mealId
-        })
-          sessionStorage.setItem("iconId", JSON.stringify(updatedSession))
-      }
-
-    });
-
-    recipe.remove()
-
-
-    this.selectedCountTarget.innerHTML = count -= 1
-
   }
 
 }

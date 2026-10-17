@@ -2,7 +2,7 @@
     <h1>Your plan</h1>
     <i class="fa-solid fa-xmark" data-action="click->meal-plan-review#openSidebar"></i>
   </div>
-  <div data-controller="meal-plan-review">
+  <div>
     <div data-categoty-target="reviewMealPlan">
 
       <div class="sidebar-content">
@@ -17,7 +17,7 @@
                 <small class="review-category"><%= recipe["strCategory"]%></small>
               </div>
             </div>
-            <i class="fa-solid fa-circle-minus remove-btn", data-action="click->category#removeBtn"></i>
+            <i class="fa-solid fa-circle-minus remove-btn", data-action="click->meal-plan-review#removeBtn"></i>
           </div>
         </a>
         <% end %>
