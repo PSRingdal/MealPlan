@@ -1,44 +1,47 @@
 <nav class="navbar navbar-expand-sm">
   <div class="container-fluid">
-      <% if user_signed_in? %>
-        <div class="d-flex align-items-center gap-3">
-          <i class="fa-solid fa-utensils"></i>
-          <%= link_to "Easy Plate", meal_plans_path, class: "navbar-header"  %>
-          <form data-search-target="form" data-action="submit->search#submit">
-            <div class="form-group d-flex align-items-center">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" class="nav-search form-control" data-search-target="inputField" placeholder="Search dishes, ingredients, cuisines...">
-            </div>
-          </form>
-        </div>
 
-        <div class="d-flex align-items-center gap-3">
-          <div data-category-target="selectedMeals">
-            <% if current_page?(recipes_path) %>
-            <%= turbo_frame_tag "review_count" do %>
-            <button class=" your-plan-btn btn btn-dark rounded-pill" data-action="click->meal-plan-review#openSidebar">
-               Your plan <span data-category-target="selectedCount" data-meal-plan-review-target="recipeCount" class="selected-count"><%=@selected_meal_count%></span>
-            </button>
-            <% end %>
-            <% else %>
-            <%= link_to "+ Add recipe", recipes_path, class: "btn btn-dark rounded-pill" %>
-            <%end %>
+    <div class="d-flex align-items-center gap-3">
+      <i class="fa-solid fa-utensils"></i>
+      <%= link_to "Easy Plate", user_signed_in? ? meal_plans_path : pages_home_path, class: "navbar-header" %>
+      <% if user_signed_in? %>
+      <div class="nav-nav d-flex gap-5">
+        <%= link_to "Meal plans", meal_plans_path, class: "app-nav" %>
+        <%= link_to "Browse recipes", recipes_path, class: "app-nav" %>
+        <%= link_to "Favorites", recipes_saved_path, class: "app-nav" %>
+      </div>
+
+    </div>
+
+      <div class="d-flex align-items-center gap-3">
+        <% if current_page?(recipes_path) %>
+        <form data-search-target="form" data-action="submit->search#submit">
+          <div class="form-group d-flex align-items-center">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="nav-search form-control" data-search-target="inputField" placeholder="Search dishes, ingredients, cuisines...">
           </div>
-          <%= link_to settings_path do  %>
-          <i class="fa-solid fa-gear"></i>
+        </form>
+         <% end %>
+        <div data-category-target="selectedMeals">
+          <% if current_page?(recipes_path) || current_page?(recipes_saved_path) %>
+            <%= turbo_frame_tag "review_count" do %>
+              <button class="your-plan-btn btn btn-dark rounded-pill" data-action="click->meal-plan-review#openSidebar">
+                Your plan <span data-category-target="selectedCount" data-meal-plan-review-target="recipeCount" class="selected-count"><%= @selected_meal_count %></span>
+              </button>
+            <% end %>
           <% end %>
         </div>
+        <%= link_to settings_path do %>
+          <i class="fa-solid fa-gear"></i>
+        <% end %>
+      </div>
+    <% else %>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+        </li>
+      </ul>
+    <% end %>
 
-      <% else %>
-        <div class="d-flex align-items-center gap-3">
-          <i class="fa-solid fa-utensils"></i>
-          <%= link_to "Easy Plate", pages_home_path, class: "home-nav-h1" %>
-        </div>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
-          </li>
-        </ul>
-      <% end %>
   </div>
 </nav>

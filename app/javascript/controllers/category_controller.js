@@ -8,16 +8,32 @@ const mealPlanCard = (meal) => {
 
   <a href="/recipes/${meal.idMeal}" class="recipe-link">
     <div>
-      <div class="card mb-2">
-        <i class="fa-solid fa-plus toggle-icon"
-        data-action="click->category#selectMeal click->meal-plan-review#review"
-        data-meal-id="${meal.idMeal}"
-        data-category-target="icon"
-        data-meal-plan-review-target="addIcon"></i>
+
+      <div class="card mb-5">
+        <button class="favourite-btn" type="button"
+        data-action="click->save-recipes#toggleSave">
+          <i class="fa-regular fa-heart" data-save-recipes-target="heartIcon" data-meal-id="${meal.idMeal}"></i>
+        </button>
         <img src="${meal.strMealThumb}">
-      </div>
-      <div class="card-body">
-        <h2> ${meal.strMeal}</h2>
+
+        <div class="card-body">
+          <h2> ${meal.strMeal}</h2>
+        </div>
+
+        <div class=" add-container mb-2">
+          <button class="add-recipe-btn btn rounded-pill"
+          data-action="click->category#selectMeal click->meal-plan-review#review"
+          data-category-target="addBtn" >
+          <div class="add-btn-div d-flex gap-3" >
+            <i class="fa-solid fa-plus toggle-icon"
+              data-meal-id="${meal.idMeal}"
+              data-category-target="icon"
+              data-meal-plan-review-target="addIcon"></i>
+              <span> Add to plan </span>
+          </div>
+          </button>
+        </div>
+
       </div>
     </div>
   </a>
@@ -26,7 +42,7 @@ const mealPlanCard = (meal) => {
 
 
 export default class extends Controller {
-  static targets = ["mealCards", "category", "selectedMeals", "icon","selectedCount", "reviewMealPlan", "card", "recipe",]
+  static targets = ["mealCards", "category", "selectedMeals", "icon","selectedCount", "reviewMealPlan", "card", "recipe", "addBtn"]
 
   connect() {
     this.fetchCategories()
@@ -76,16 +92,17 @@ export default class extends Controller {
     event.preventDefault()
 
     let count = parseInt(this.selectedCountTarget.innerHTML, 10) || 0
+    const icon = event.currentTarget.querySelector("i")
 
-    if (event.currentTarget.classList.contains("fa-plus")) {
-      event.currentTarget.classList.replace('fa-plus', 'fa-check')
-      event.currentTarget.style.color ="white"
-      event.currentTarget.style.background ="#3D5645"
+    if (icon.classList.contains("fa-plus")) {
+      icon.classList.replace('fa-plus', 'fa-check')
+      icon.style.color ="white"
+      icon.style.background ="#3D5645"
       this.selectedCountTarget.innerHTML = count += 1
-    } else if (event.currentTarget.classList.contains("fa-check")) {
-      event.currentTarget.classList.replace('fa-check', 'fa-plus')
-      event.currentTarget.style.color ="black"
-      event.currentTarget.style.background ="white"
+    } else if (icon.classList.contains("fa-check")) {
+      icon.classList.replace('fa-check', 'fa-plus')
+      icon.style.color ="black"
+      icon.style.background ="white"
       this.selectedCountTarget.innerHTML = count -= 1
     }
 
@@ -97,5 +114,4 @@ export default class extends Controller {
     })
     sessionStorage.setItem("iconId", JSON.stringify(ids))
   }
-
 }

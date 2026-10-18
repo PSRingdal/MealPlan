@@ -6,35 +6,45 @@ class RecipesController < ApplicationController
     @categories = data["categories"].map { |category| category["strCategory"] }
     load_recipes
   end
+def save
+  recipe = fetch_recipe(params[:id])
 
-  def save
-    recipe = fetch_recipe(params[:id])
-
-    existing_recipe = current_user.recipes.find_by(title: recipe["strMeal"])
-    if existing_recipe.blank?
-      @recipe = current_user.recipes.new(
-        title: recipe["strMeal"],
-        image_url: recipe["strMealThumb"],
-        external_id: recipe["idMeal"],
-        saved: true
-      )
-
-      @recipe.save
-    end
-
-
-    redirect_back fallback_location: recipes_path
+  existing_recipe = current_user.recipes.find_by(title: recipe["strMeal"])
+  if existing_recipe.blank?
+    @recipe = current_user.recipes.new(
+      title: recipe["strMeal"],
+      image_url: recipe["strMealThumb"],
+      external_id: recipe["idMeal"],
+      saved: true
+    )
+    @recipe.save
   end
+
+  respond_to do |format|
+    format.html { redirect_back fallback_location: recipes_path }
+    format.json { head :ok }
+  end
+end
 
   def saved
     @recipes = current_user.recipes.where(saved: true)
   end
 
   def unsave
-    @recipe = current_user.recipes.find(params[:id])
-    @recipe.destroy
+    respond_to do |format|
+      format.json do
+        recipe = fetch_recipe(params[:id])
+        @recipe = current_user.recipes.find_by(title: recipe["strMeal"])
+        @recipe.destroy
+        head :ok
+      end
 
-    redirect_back fallback_location: recipes_path
+      format.html do
+        @recipe = current_user.recipes.find(params[:id])
+        @recipe.destroy
+        redirect_back fallback_location: recipes_path
+      end
+    end
   end
 
   def review

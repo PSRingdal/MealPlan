@@ -31,10 +31,16 @@ export default class extends Controller {
         console.log(data)
         const mealCardsCointaner = this.mealCardsTarget
         mealCardsCointaner.innerHTML = ""
+
+        const grid = document.createElement("div")
+        grid.classList.add("search-grid")
+
         data.meals.forEach((meal) => {
           const cardHTML = mealPlanCard(meal)
-          mealCardsCointaner.insertAdjacentHTML("beforeend", cardHTML);
+          grid.insertAdjacentHTML("beforeend", cardHTML);
         })
+
+        mealCardsCointaner.appendChild(grid)
       })
   }
 
