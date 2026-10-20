@@ -1,25 +1,45 @@
-<div class="container pt-5">
-  <div class="fav-container">
+<div class="container">
+  <div>
 
-    <div class="fav-desc">
+    <div>
       <h1>Your Favourites</h1>
       <p>Recipes you've saved, ready to add to a meal plan.</p>
     </div>
 
-    <div class="saved-recipes-grid">
+    <div class="favourites-grid">
       <% @recipes.each do |recipe| %>
-        <%= link_to recipe_path(recipe.external_id) do %>
-          <div class="fav-card d-flex justify-content-between align-items-center">
-            <div class="d-flex gap-3 align-items-center">
-              <%= image_tag recipe.image_url, class: "fav-image" %>
-              <h2><%= recipe.title %></h2>
-            </div>
+        <%= link_to recipe_path(recipe.external_id), class: "fav-card-link" do %>
+          <div>
+            <div class="card">
+              <%= image_tag recipe.image_url, class: "img" %>
+              <div class="card-body">
+                <h2><%= recipe.title %></h2>
 
-            <div class="d-flex flex-column gap-4">
-              <%= button_to unsave_recipe_path(recipe), class: "border-0 bg-transparent" do %>
-                <i class="fa-solid fa-bookmark saved"></i>
-                <i class="fa-solid fa-arrow-right-long"></i>
-              <% end %>
+                <div class="footer">
+                  <div class="footer d-flex justify-content-between align-items-center">
+                    <span class="category-pill rounded-pill"><%= recipe.category %></span>
+
+                    <button class="add-recipe-btn btn rounded-pill"
+                    data-action="click->category#selectMeal click->meal-plan-review#review"
+                    data-category-target="addBtn" >
+                      <div class="add-btn-div d-flex gap-3" >
+                        <i class="fa-solid fa-plus toggle-icon"
+                          data-meal-id="${meal.idMeal}"
+                          data-category-target="icon"
+                          data-meal-plan-review-target="addIcon"></i>
+                          <span> Add to plan </span>
+                      </div>
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <%= button_to unsave_recipe_path(recipe), class: "border-0 favourite-btn" do %>
+                <i class="fa-regular fa-heart save-fav"></i>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>

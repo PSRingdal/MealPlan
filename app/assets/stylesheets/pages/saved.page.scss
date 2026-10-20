@@ -1,45 +1,18 @@
-.fav-container {
-  background-color: #ffff;
-  padding: 40px;
-  border: 1px solid #f0ece3;
-  border-radius: 18px;
-
-  h1 {
-    font-size: 64px;
-    font-weight: 700;
-  }
-
-  h2{
-    font-size: 22px;
-    font-weight: 600;
-  }
-
-  p {
-    font-size: 20px;
-  }
-}
-
-.fav-desc {
-  margin-bottom: 32px;
-  border-bottom: 1px solid lightgray;
-}
-
-.saved-recipes-grid {
+.favourites-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, 270px);
+  justify-content: start;
+  gap: 20px;
 }
 
-.fav-image {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 12px;
+.fav-card-link{
+  text-decoration: none;
 }
 
-.fav-card {
-  background-color: #faf8f4;
-  border: 1px solid #f0ece3;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.category-pill{
+  background: #f1eee8;
+  color: #2e4034;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
 }

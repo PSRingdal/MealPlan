@@ -24,6 +24,17 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.footer{
+   margin-top: auto;
+}
+
 .card img {
   border-radius: 4px;
   height: 195px;
@@ -70,22 +81,15 @@
 
 .add-btn-div span {
   color: #ffff;
-  font-size: 14px;
   align-items: center;
 }
 
-.add-container {
-position: absolute;
-right: 10px;
-bottom: 0px;
-
-}
 
 .favourite-btn {
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 8;
+  z-index: 2;
   width: 38px;
   height: 38px;
   display: flex;
@@ -106,4 +110,8 @@ bottom: 0px;
 
 .save-fav{
   color: #e0533d;
+}
+
+.recipe-area {
+  font-size: 13px;
 }
