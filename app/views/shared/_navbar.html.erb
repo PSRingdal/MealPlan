@@ -5,7 +5,7 @@
       <i class="fa-solid fa-utensils"></i>
       <%= link_to "Easy Plate", user_signed_in? ? meal_plans_path : pages_home_path, class: "navbar-header" %>
       <% if user_signed_in? %>
-      <div class="nav-nav d-flex gap-5">
+      <div class="nav-nav d-flex gap-4">
         <%= link_to "Meal plans", meal_plans_path, class: "app-nav" %>
         <%= link_to "Browse recipes", recipes_path, class: "app-nav" %>
         <%= link_to "Favorites", recipes_saved_path, class: "app-nav" %>

@@ -1,20 +1,47 @@
-<div class="container">
-  <div class="meal-plan-hero">
-    <h1>Your meal plans</h1>
-    <p>View and manage the recipes you've added to your meal plan</p>
-  </div>
+<div class="container" data-controller="meal-plan">
+  <div class="row">
+      <div class="meal-plan-hero">
+        <h1>Your meal plans</h1>
+        <p>View and manage the recipes you've added to your meal plan</p>
+      </div>
 
-    <div class="cards-container">
-      <% @meal_plans.each do |meal_plan|%>
-        <%  meal_plan.recipes.each do |recipe| %>
+          <div class="meal-plan-container">
+            <% sorted_dates = @meal_plans_by_date.sort { |a, b| b <=> a } %>
+            <% sorted_dates.each do |date, meal_plan|%>
+              <div class="day-heading ">
+                <h2><%= date_label(date) %></h2>
+                <span class="date-label"> <%=(date.strftime ("%a %d %b"))%></span>
+              </div>
+              <% meal_plan.each do |plan| %>
 
-        <%= link_to recipe_path(recipe.external_id) do %>
-          <div class="card mb-4">
-            <%= image_tag recipe.image_url %>
-            <%= recipe.title  %>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
+              <div class=" meal-plan-card-wrapper bg-white  px-3 mb-3 d-flex flex-column ">
+                <% plan.recipes.each do |recipe| %>
+                <%= link_to recipe_path(recipe.external_id), class: "navigation-link" do %>
+
+                    <div class="meal-plan-card d-flex align-items-center py-3 border-bottom rounded-0 justify-content-between">
+                      <div class="d-flex align-items-center gap-3">
+                        <%= image_tag recipe.image_url, class: "meal-plan-img" %>
+                        <h3 class="meal-title"><%= recipe.title  %></h3>
+                        <span><%= recipe.category %></span>
+                      </div>
+                      <button class="meal-plan-remove-btn" data-meal-plan-target="removeBtn" data-action="click->meal-plan#removeBtn">
+                        <i class="fa-solid fa-x"></i>
+                      </button>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+      </div>
+
+    <div class="add-meal-card bg-white border">
+      <div class="p-3">
+        <h2>This week</h2>
+        <span><%= @meal_plans.count %> meals</span>
+      </div>
+      <div>
+      <button class="btn border rounded-pill add-meal-btn"> + Add meal</button>
+    </div>
   </div>
 </div>

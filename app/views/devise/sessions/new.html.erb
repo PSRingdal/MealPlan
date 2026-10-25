@@ -1,9 +1,5 @@
-<div class="container">
-  <div class="d-flex justify-content-center align-items-center gap-5 pt-5">
-
-    <%= image_tag "pokebowl.jpg",
-        alt: "Poke bowl",
-        class: "sign-in-img" %>
+<div class="row align-items-center">
+  <div class="col-6 d-flex justify-content-center">
 
     <div class="form-wrapper">
       <h2>Log in</h2>
@@ -31,7 +27,13 @@
       <% end %>
 
     </div>
-
   </div>
+
+  <div class="col-6">
+    <%= image_tag "pokebowl.jpg",
+          alt: "Poke bowl",
+          class: "sign-in-img" %>
+  </div>
+
 </div>
 ``

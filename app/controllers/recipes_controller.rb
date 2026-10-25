@@ -28,7 +28,8 @@ class RecipesController < ApplicationController
   end
 
   def saved
-    @recipes = current_user.recipes.where(saved: true)
+    @saved_recipes = current_user.recipes.where(saved: true)
+    load_recipes
   end
 
   def unsave

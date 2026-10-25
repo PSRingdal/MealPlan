@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   patch "recipes/:id/check", to: "recipes#check", as: :check_recipe
   get "recipes/saved", to: "recipes#saved"
 
-  resources :recipes, only: [ :index, :show, :destroy ]
+  resources :recipes, only: [ :index, :show ]
 end

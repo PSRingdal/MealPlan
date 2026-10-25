@@ -6,7 +6,7 @@
     <div data-categoty-target="reviewMealPlan">
 
       <div class="sidebar-content">
-        <% recipes.each do |recipe|%>
+        <% (recipes || []).each do |recipe|%>
 
         <a href="/recipes/<%= recipe["idMeal"] %>" data-turbo-frame="_top">
           <div class="review-card d-flex justify-content-between" data-category-target="recipe" data-recipe-id=<%= recipe["idMeal"] %>>

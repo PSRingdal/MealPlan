@@ -7,7 +7,7 @@
     </div>
 
     <div class="favourites-grid">
-      <% @recipes.each do |recipe| %>
+      <% @saved_recipes.each do |recipe| %>
         <%= link_to recipe_path(recipe.external_id), class: "fav-card-link" do %>
           <div>
             <div class="card">
@@ -24,7 +24,7 @@
                     data-category-target="addBtn" >
                       <div class="add-btn-div d-flex gap-3" >
                         <i class="fa-solid fa-plus toggle-icon"
-                          data-meal-id="${meal.idMeal}"
+                          data-meal-id= "<%= recipe.external_id %>"
                           data-category-target="icon"
                           data-meal-plan-review-target="addIcon"></i>
                           <span> Add to plan </span>

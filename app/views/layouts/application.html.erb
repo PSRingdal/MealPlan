@@ -25,7 +25,18 @@
   </head>
 
   <body data-controller="search category meal-plan-review save-recipes">
-    <%= render "shared/navbar" %>
+
+    <% unless current_page?(new_user_registration_path) || current_page?(new_user_session_path)  %>
+        <%= render "shared/navbar" %>
+    <% end %>
+
+
+    <div class="sidebar" data-meal-plan-review-target="sidebar">
+      <%= turbo_frame_tag "review_sidebar" do %>
+        <%= render "shared/sidenav", recipes: @recipes || [] %>
+      <% end %>
+    </div>
+
     <%= yield %>
   </body>
 </html>

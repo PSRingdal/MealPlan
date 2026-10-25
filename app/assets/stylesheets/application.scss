@@ -30,10 +30,16 @@ body {
   text-decoration: none;
   color: black;
   font-weight: 600;
+  padding: 4px 10px;
 
   &:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-  }
+    border: 1px solid grey;
+    border-radius: 999px;
 
+  }
+}
+
+.navigation-link {
+  text-decoration: none;
+  color: black;
 }
