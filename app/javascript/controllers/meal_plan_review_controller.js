@@ -33,14 +33,16 @@ export default class extends Controller {
     const savedMealIds = JSON.parse(sessionStorage.getItem("iconId"))
 
 
-    savedMealIds.forEach((id) => {
+
+      savedMealIds.forEach((id) => {
       if (id === recipe.dataset.recipeId) {
 
         this.addIconTargets.forEach((icon)=> {
-          icon.classList.replace('fa-check', 'fa-plus')
-          icon.style.color ="black"
-          icon.style.background ="white"
-
+          if (icon.dataset.mealId === recipe.dataset.recipeId) {
+            icon.classList.replace('fa-check', 'fa-plus')
+            icon.style.color ="black"
+            icon.style.background ="white"
+          }
 
         const currentSession = sessionStorage.getItem("iconId")
         const array = JSON.parse(currentSession)
@@ -51,6 +53,7 @@ export default class extends Controller {
         })
       }
     });
+
 
 
     const updatedMealIds = JSON.parse(sessionStorage.getItem("iconId"))
