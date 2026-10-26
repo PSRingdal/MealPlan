@@ -3,21 +3,13 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = ["sidebar", "addIcon", "recipeCount"]
 
-
   connect() {
     console.log("connected")
   }
 
   async review() {
 
-    const ids = [];
-
-    this.addIconTargets.forEach((icon) => {
-      if (icon.classList.contains("fa-check")) {
-        ids.push(icon.dataset.mealId);
-      }
-    });
-
+  const ids = JSON.parse(sessionStorage.getItem("iconId"))
 
    const response = await fetch("/recipes/review", {
       method: "POST",
@@ -33,25 +25,33 @@ export default class extends Controller {
   }
 
   async removeBtn(event){
+    console.log()
     event.preventDefault()
 
     let count = parseInt(this.recipeCountTarget.innerHTML)
     const recipe = event.currentTarget.closest(".review-card")
+    const savedMealIds = JSON.parse(sessionStorage.getItem("iconId"))
 
-    this.addIconTargets.forEach((icon) => {
-      if (icon.dataset.mealId === recipe.dataset.recipeId) {
-        icon.classList.replace('fa-check', 'fa-plus')
-        icon.style.color ="black"
-        icon.style.background ="white"
+
+    savedMealIds.forEach((id) => {
+      if (id === recipe.dataset.recipeId) {
+
+        this.addIconTargets.forEach((icon)=> {
+          icon.classList.replace('fa-check', 'fa-plus')
+          icon.style.color ="black"
+          icon.style.background ="white"
+
 
         const currentSession = sessionStorage.getItem("iconId")
         const array = JSON.parse(currentSession)
         const updatedSession = array.filter(function (ids) {
-          return ids !== icon.dataset.mealId
+          return ids !== id
         })
           sessionStorage.setItem("iconId", JSON.stringify(updatedSession))
+        })
       }
     });
+
 
     const updatedMealIds = JSON.parse(sessionStorage.getItem("iconId"))
 
@@ -72,9 +72,6 @@ export default class extends Controller {
     this.recipeCountTarget.innerHTML = count -= 1
 
   }
-
-
-
 
   openSidebar() {
    this.sidebarTarget.classList.toggle("open");

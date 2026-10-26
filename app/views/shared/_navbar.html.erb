@@ -26,7 +26,7 @@
           <% if current_page?(recipes_path) || current_page?(recipes_saved_path) %>
             <%= turbo_frame_tag "review_count" do %>
               <button class="your-plan-btn btn btn-dark rounded-pill" data-action="click->meal-plan-review#openSidebar">
-                Your plan <span data-category-target="selectedCount" data-meal-plan-review-target="recipeCount" class="selected-count"><%= @selected_meal_count %></span>
+                Your plan <span data-meal-selection-target="selectedCount" data-meal-plan-review-target="recipeCount" class="selected-count"><%= @selected_meal_count %></span>
               </button>
             <% end %>
           <% end %>

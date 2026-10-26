@@ -9,7 +9,7 @@
         <% (recipes || []).each do |recipe|%>
 
         <a href="/recipes/<%= recipe["idMeal"] %>" data-turbo-frame="_top">
-          <div class="review-card d-flex justify-content-between" data-category-target="recipe" data-recipe-id=<%= recipe["idMeal"] %>>
+          <div class="review-card d-flex justify-content-between" data-recipe-id=<%= recipe["idMeal"] %>>
             <div class="d-flex gap-3">
               <img class="review-img" src="<%=recipe["strMealThumb"] %>">
               <div class="review-body">

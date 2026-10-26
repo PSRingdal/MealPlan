@@ -20,12 +20,12 @@
                     <span class="category-pill rounded-pill"><%= recipe.category %></span>
 
                     <button class="add-recipe-btn btn rounded-pill"
-                    data-action="click->category#selectMeal click->meal-plan-review#review"
-                    data-category-target="addBtn" >
+                    data-action="click->meal-selection#selectMeal click->meal-plan-review#review"
+                    data-meal-selection-target="addBtn" >
                       <div class="add-btn-div d-flex gap-3" >
                         <i class="fa-solid fa-plus toggle-icon"
                           data-meal-id= "<%= recipe.external_id %>"
-                          data-category-target="icon"
+                          data-meal-selection-target="icon"
                           data-meal-plan-review-target="addIcon"></i>
                           <span> Add to plan </span>
                       </div>

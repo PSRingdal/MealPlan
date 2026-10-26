@@ -22,11 +22,12 @@ const mealPlanCard = (meal) => {
           <div class="footer d-flex justify-content-between align-items-center">
           <span class="recipe-area">${meal.strArea}</span>
             <button class="add-recipe-btn btn rounded-pill"
-            data-action="click->category#selectMeal click->meal-plan-review#review"
+            data-action="click->meal-selection#selectMeal click->meal-plan-review#review"
             data-category-target="addBtn" >
             <div class="add-btn-div d-flex gap-3" >
               <i class="fa-solid fa-plus toggle-icon"
                 data-meal-id="${meal.idMeal}"
+                data-meal-selection-target="icon"
                 data-category-target="icon"
                 data-meal-plan-review-target="addIcon"></i>
                 <span> Add to plan </span>
@@ -43,7 +44,7 @@ const mealPlanCard = (meal) => {
 
 
 export default class extends Controller {
-  static targets = ["mealCards", "category", "selectedMeals", "icon","selectedCount", "reviewMealPlan", "card", "recipe", "addBtn"]
+  static targets = ["mealCards", "category", "selectedMeals", "icon", "reviewMealPlan", "card"]
 
   connect() {
     this.fetchCategories()
@@ -74,7 +75,6 @@ export default class extends Controller {
           this.mealCardsTarget.appendChild(section)
 
           const savedMealId = JSON.parse(sessionStorage.getItem("iconId"))
-          console.log("saved", savedMealId)
 
           this.iconTargets.forEach((icon)=> {
             if (savedMealId.includes((icon.dataset.mealId))) {
@@ -88,31 +88,4 @@ export default class extends Controller {
 
   }
 
-  selectMeal(event){
-    console.log("addMeal controller")
-    event.preventDefault()
-
-    let count = parseInt(this.selectedCountTarget.innerHTML, 10) || 0
-    const icon = event.currentTarget.querySelector("i")
-
-    if (icon.classList.contains("fa-plus")) {
-      icon.classList.replace('fa-plus', 'fa-check')
-      icon.style.color ="white"
-      icon.style.background ="#3D5645"
-      this.selectedCountTarget.innerHTML = count += 1
-    } else if (icon.classList.contains("fa-check")) {
-      icon.classList.replace('fa-check', 'fa-plus')
-      icon.style.color ="black"
-      icon.style.background ="white"
-      this.selectedCountTarget.innerHTML = count -= 1
-    }
-
-    let ids = []
-    this.iconTargets.forEach((icon)=>{
-      if (icon.classList.contains("fa-check")) {
-          ids.push(icon.dataset.mealId)
-      }
-    })
-    sessionStorage.setItem("iconId", JSON.stringify(ids))
-  }
 }
