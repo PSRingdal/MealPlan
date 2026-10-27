@@ -20,24 +20,6 @@ body {
   width: 1200px;
   margin: 0 auto;
 }
-.nav-nav {
-  background-color: rgba(236, 235, 235, 0.759);
-  padding: 10px;
-  border-radius: 999px;
-
-}
-.app-nav {
-  text-decoration: none;
-  color: black;
-  font-weight: 600;
-  padding: 4px 10px;
-
-  &:hover {
-    border: 1px solid grey;
-    border-radius: 999px;
-
-  }
-}
 
 .navigation-link {
   text-decoration: none;

@@ -8,7 +8,7 @@
 
     <div class="favourites-grid">
       <% @saved_recipes.each do |recipe| %>
-        <%= link_to recipe_path(recipe.external_id), class: "fav-card-link" do %>
+        <%= link_to recipe_path(recipe.external_id), class: "favourite-card-link" do %>
           <div>
             <div class="card">
               <%= image_tag recipe.image_url, class: "img" %>
@@ -36,9 +36,9 @@
               </div>
 
               <div>
-                <%= button_to unsave_recipe_path(recipe), class: "border-0 favourite-btn" do %>
-                <i class="fa-regular fa-heart save-fav"></i>
-                <% end %>
+                <button class="favourite-btn" data-action="click->save-recipes#toggleSave">
+                  <i class="fa-regular fa-heart save-fav"></i>
+                </button>
               </div>
             </div>
           </div>

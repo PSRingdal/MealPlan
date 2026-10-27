@@ -5,10 +5,10 @@
       <i class="fa-solid fa-utensils"></i>
       <%= link_to "Easy Plate", user_signed_in? ? meal_plans_path : pages_home_path, class: "navbar-header" %>
       <% if user_signed_in? %>
-      <div class="nav-nav d-flex gap-4">
-        <%= link_to "Meal plans", meal_plans_path, class: "app-nav" %>
-        <%= link_to "Browse recipes", recipes_path, class: "app-nav" %>
-        <%= link_to "Favorites", recipes_saved_path, class: "app-nav" %>
+      <div class="page-navigation-wrapper d-flex gap-4">
+        <%= link_to "Meal plans", meal_plans_path, class: "page-nav" %>
+        <%= link_to "Browse recipes", recipes_path, class: "page-nav" %>
+        <%= link_to "Favorites", recipes_saved_path, class: "page-nav" %>
       </div>
 
     </div>
@@ -32,7 +32,7 @@
           <% end %>
         </div>
         <%= link_to settings_path do %>
-          <i class="fa-solid fa-gear"></i>
+          <i class="fa-solid fa-gear settings-btn"></i>
         <% end %>
       </div>
     <% else %>

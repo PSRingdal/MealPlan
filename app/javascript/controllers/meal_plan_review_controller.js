@@ -32,9 +32,7 @@ export default class extends Controller {
     const recipe = event.currentTarget.closest(".review-card")
     const savedMealIds = JSON.parse(sessionStorage.getItem("iconId"))
 
-
-
-      savedMealIds.forEach((id) => {
+    savedMealIds.forEach((id) => {
       if (id === recipe.dataset.recipeId) {
 
         this.addIconTargets.forEach((icon)=> {
@@ -53,8 +51,6 @@ export default class extends Controller {
         })
       }
     });
-
-
 
     const updatedMealIds = JSON.parse(sessionStorage.getItem("iconId"))
 

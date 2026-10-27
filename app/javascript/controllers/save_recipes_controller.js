@@ -61,6 +61,6 @@ export default class extends Controller {
       if (response.ok) {
         console.log(response.status)
       }
-
   }
+
 }
