@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :meal_plan_recipes, only: [ :create, :destroy ]
   end
 
+
   post "recipes/review", to: "recipes#review"
   post "recipes/:id/save", to: "recipes#save", as: :save_recipe
   post "recipes/:id/unsave", to: "recipes#unsave", as: :unsave_recipe
