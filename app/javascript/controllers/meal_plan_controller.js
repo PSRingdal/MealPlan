@@ -9,9 +9,18 @@ export default class extends Controller {
   }
 
   removeBtn(event) {
-    event.preventDefault()
-    const button = event.currentTarget.closest(".meal-plan-card")
-    button.remove()
+  event.preventDefault()
+
+  const meallink = event.currentTarget.closest(".navigation-link")
+  const wrapper = meallink.closest(".meal-plan-card-wrapper")
+  const cards = wrapper.querySelectorAll(".meal-plan-card")
+
+    if (cards.length === 1) {
+      wrapper.remove()
+    } else {
+      meallink.remove()
+    }
+
   }
 
 }

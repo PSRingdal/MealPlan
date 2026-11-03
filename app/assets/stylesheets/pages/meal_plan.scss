@@ -38,6 +38,10 @@
   border-radius: 20px;
 }
 
+.meal-plan-card-wrapper a:last-child .meal-plan-card {
+  border-bottom: 0 !important;
+}
+
 
 .meal-plan-img{
   width: 96px;
@@ -77,12 +81,9 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 320px;
-    height: 320px;
-    padding: 0;
+    height: 100%;
 
     .add-meal-btn {
-      width: 100%;
       position: absolute;
       bottom: 0;
     }

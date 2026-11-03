@@ -12,8 +12,14 @@
 @import "./components/index.scss";
 @import "./pages/index.scss";
 
+:root {
+  --font: "Inter", system-ui, sans-serif;
+}
+
 body {
-  background-color: #F6F1E5;
+  background-color: #FAF9F6;
+    font-family: var(--font);
+
 }
 
 .container {
