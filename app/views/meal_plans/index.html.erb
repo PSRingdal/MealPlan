@@ -7,7 +7,7 @@
 
       <div class="col-8">
         <div class="meal-plan-container">
-          <% sorted_dates = @meal_plans_by_date.sort { |a, b| b <=> a } %>
+          <% sorted_dates = @meal_plans_by_date.sort { |a, b| a <=>  b } %>
           <% sorted_dates.each do |date, meal_plan|%>
             <div class=" meal-plan-card-wrapper bg-white  px-3 mb-3 d-flex flex-column ">
               <div class="day-heading ">

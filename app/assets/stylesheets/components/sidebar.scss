@@ -33,6 +33,11 @@
   border-top: 1px solid #E3E1D3;
 }
 
+.sidebar-footer.expanded {
+  min-height: 250px;
+}
+
+
 .sidebar.open {
   transform: translateX(0);
 }

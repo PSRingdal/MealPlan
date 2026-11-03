@@ -1,7 +1,7 @@
 class MealPlansController < ApplicationController
   def index
     @meal_plans = current_user.meal_plans
-    @meal_plans_by_date = @meal_plans.group_by { |meal_plan| meal_plan.created_at.to_date }
+    @meal_plans_by_date = @meal_plans.group_by { |meal_plan| meal_plan.plan_date }
 
     @recipes = []
     current_user.meal_plans.each do |meal_plan|
@@ -24,7 +24,7 @@ class MealPlansController < ApplicationController
   end
 
   def create
-    @meal_plan = current_user.meal_plans.new
+    @meal_plan = current_user.meal_plans.new(plan_date: params[:plan_date])
     @meal_plan.save
 
     meal_ids = session[:meal_ids]
@@ -37,7 +37,7 @@ class MealPlansController < ApplicationController
       @join = @meal_plan.meal_plan_recipes.new(recipe: @recipe)
       @join.save
     end
-        redirect_to meal_plans_path, status: :see_other
+      redirect_to meal_plans_path, status: :see_other
   end
 
   def show

@@ -24,8 +24,38 @@
       </div>
     </div>
 
-    <div class="sidebar-footer">
-      <%= link_to "Build your plan",  meal_plans_path, data: { turbo_method: :post, turbo_frame: "_top" }, class: " build-your-plan-btn btn w-100" %>
-    </div>
+    <div class="sidebar-footer" data-controller="meal-plan-builder">
 
+      <button
+        type="button"
+        class="build-your-plan-btn btn w-100"
+        data-action="click->meal-plan-builder#toggle"
+        data-meal-plan-builder-target="button">
+        Build your plan
+      </button>
+
+      <div class="d-none" data-meal-plan-builder-target="form">
+
+      <%= form_with url: meal_plans_path, method: :post, data: { turbo_frame: "_top" } do |form| %>
+          <%= form.label :plan_date, "Select date",
+              class: "form-label mb-2" %>
+
+          <%= form.date_field :plan_date,
+              class: "form-control mb-3",
+              value: Date.current %>
+
+          <%= form.submit "Build Plan",
+              class: "build-your-plan-btn btn w-100" %>
+        <% end %>
+
+        <button
+          type="button"
+          class="btn btn-link w-100 mt-2"
+          data-action="click->meal-plan-builder#toggle">
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
   </div>
