@@ -38,8 +38,19 @@
 
       <div class="col-4">
         <div class="add-meal-card bg-white border">
-          <h2>Grocery list</h2>
-          <span><%= @meal_plans.count %> meals</span>
+          <h2>
+            <i class="fa-solid fa-cart-shopping"></i>
+            Grocery list
+          </h2>
+
+          <% @ingredients.each do |ingredient, count| %>
+            <p>
+              <%= ingredient %>
+              <% if count > 1 %>
+                x <%= count %>
+              <% end %>
+            </p>
+          <% end %>
         <div>
           <button class="btn border rounded-pill add-meal-btn"> + Copy list</button>
         </div>

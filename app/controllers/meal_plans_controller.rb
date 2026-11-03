@@ -1,7 +1,26 @@
 class MealPlansController < ApplicationController
   def index
-     @meal_plans = current_user.meal_plans
-     @meal_plans_by_date = @meal_plans.group_by { |meal_plan| meal_plan.created_at.to_date }
+    @meal_plans = current_user.meal_plans
+    @meal_plans_by_date = @meal_plans.group_by { |meal_plan| meal_plan.created_at.to_date }
+
+    @recipes = []
+    current_user.meal_plans.each do |meal_plan|
+      @recipes += meal_plan.recipes
+    end
+
+    @ingredients = []
+
+    @recipes.each do |recipe|
+      recipe_data = fetch_recipe(recipe.external_id)
+
+      (1..20).each do |i|
+        ingredient = recipe_data["strIngredient#{i}"]
+
+        @ingredients << ingredient if ingredient.present?
+      end
+    end
+
+    @ingredients = @ingredients.tally
   end
 
   def create
