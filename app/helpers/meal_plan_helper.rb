@@ -5,6 +5,8 @@ module MealPlanHelper
     when Date.current then "Today "
     when Date.current + 1 then "Tomorrow"
     when Date.current - 1 then "Yesterday"
+    else
+    date.strftime("%A")
     end
   end
 end

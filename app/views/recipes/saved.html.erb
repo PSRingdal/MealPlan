@@ -37,7 +37,10 @@
 
               <div>
                 <button class="favourite-btn" data-action="click->save-recipes#toggleSave">
-                  <i class="fa-regular fa-heart save-fav"></i>
+                  <i class="fa-regular fa-heart save-fav"
+                  data-meal-id="<%= recipe.external_id %>" >
+
+                  </i>
                 </button>
               </div>
             </div>

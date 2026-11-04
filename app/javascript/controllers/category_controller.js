@@ -12,7 +12,7 @@ const mealPlanCard = (meal) => {
       <div class="card mb-5">
         <button class="favourite-btn" type="button"
         data-action="click->save-recipes#toggleSave">
-          <i class="fa-regular fa-heart" data-save-recipes-target="heartIcon" data-meal-id="${meal.idMeal}"></i>
+          <i class="fa-regular fa-heart" data-save-recipes-target="heartIcon" data-category-target="saveIcon" data-meal-id="${meal.idMeal}"></i>
         </button>
         <img src="${meal.strMealThumb}">
 
@@ -44,7 +44,7 @@ const mealPlanCard = (meal) => {
 
 
 export default class extends Controller {
-  static targets = ["mealCards", "category", "selectedMeals", "icon", "reviewMealPlan", "card"]
+  static targets = ["mealCards", "category", "selectedMeals", "icon", "reviewMealPlan", "card", "saveIcon"]
 
   connect() {
     this.fetchCategories()
@@ -74,7 +74,7 @@ export default class extends Controller {
           section.appendChild(row)
           this.mealCardsTarget.appendChild(section)
 
-          const savedMealId = JSON.parse(sessionStorage.getItem("iconId"))
+          const savedMealId = JSON.parse(sessionStorage.getItem("iconId")) || []
 
           this.iconTargets.forEach((icon)=> {
             if (savedMealId.includes((icon.dataset.mealId))) {
@@ -83,9 +83,20 @@ export default class extends Controller {
               icon.style.background = "#3D5645"
             }
           })
+            this.restoreState()
+
         })
     })
 
+  }
+
+   restoreState() {
+    const savedMealIds = JSON.parse(sessionStorage.getItem("savedMealIds")) || []
+    this.saveIconTargets.forEach((icon) => {
+      if (savedMealIds.includes(icon.dataset.mealId)) {
+        icon.classList.add("save-fav")
+      }
+    })
   }
 
 }

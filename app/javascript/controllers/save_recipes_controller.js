@@ -5,7 +5,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["heartIcon"]
   connect() {
-
   }
 
   toggleSave(event) {
@@ -26,8 +25,12 @@ export default class extends Controller {
     console.log("saved")
     const heartIcon = event.currentTarget.querySelector("i")
 
-
     const id = heartIcon.dataset.mealId
+
+    const currentSession = sessionStorage.getItem("savedMealIds")
+    const array = JSON.parse(currentSession) || []
+    array.push(id)
+    sessionStorage.setItem("savedMealIds", JSON.stringify(array))
 
     const response = await fetch(`/recipes/${id}/save`, {
       method: "POST",
@@ -44,11 +47,21 @@ export default class extends Controller {
   }
 
   async unsaveRecipe(event){
+    const card = event.currentTarget.closest(".favourite-card-link")
+
     console.log("unsaved")
     const heartIcon = event.currentTarget.querySelector("i")
 
-
     const id = heartIcon.dataset.mealId
+
+    const currentSession = sessionStorage.getItem("savedMealIds")
+    const array = JSON.parse(currentSession) || []
+    const updatedSession = array.filter(function (ids) {
+      return ids !== id
+    })
+    sessionStorage.setItem("savedMealIds", JSON.stringify(updatedSession))
+
+
 
     const response = await fetch(`/recipes/${id}/unsave`, {
       method: "POST",
@@ -60,7 +73,9 @@ export default class extends Controller {
 
       if (response.ok) {
         console.log(response.status)
+        card.remove()
       }
   }
+
 
 }

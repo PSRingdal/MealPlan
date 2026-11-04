@@ -2,9 +2,12 @@ class MealPlansController < ApplicationController
   def index
     @meal_plans = current_user.meal_plans
     @meal_plans_by_date = @meal_plans.group_by { |meal_plan| meal_plan.plan_date }
+    @selected_date = params[:date].present? ? Date.parse(params[:date]) : Date.current
 
     @recipes = []
-    current_user.meal_plans.each do |meal_plan|
+    meal_plans = current_user.meal_plans.where(plan_date: @selected_date)
+
+    meal_plans.each do |meal_plan|
       @recipes += meal_plan.recipes
     end
 
