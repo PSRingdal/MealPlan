@@ -1,7 +1,7 @@
 <div class="container">
   <div>
 
-    <div>
+    <div class="favourites-hero">
       <h1>Your Favourites</h1>
       <p>Recipes you've saved, ready to add to a meal plan.</p>
     </div>
@@ -37,9 +37,8 @@
 
               <div>
                 <button class="favourite-btn" data-action="click->save-recipes#toggleSave">
-                  <i class="fa-regular fa-heart save-fav"
+                  <i class="fa-solid fa-heart save-fav"
                   data-meal-id="<%= recipe.external_id %>" >
-
                   </i>
                 </button>
               </div>

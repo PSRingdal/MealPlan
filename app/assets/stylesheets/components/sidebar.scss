@@ -17,7 +17,7 @@
     font-weight: 600;
   }
   padding: 24px 24px 16px;
-  height: 89px;
+  height: 101px;
   border-bottom: 1px solid #E3E1D3;
 }
 
@@ -62,5 +62,10 @@
 
 .build-your-plan-btn {
   color: #ffff;
-  background-color: #3d5645;
+  background-color: #247a52;
+
+  &:hover {
+    color: #ffff;
+    background-color: #278a5c;
+  }
 }

@@ -14,9 +14,11 @@ export default class extends Controller {
 
     if (!heartIcon.classList.contains("save-fav")) {
         heartIcon.classList.add("save-fav")
+        heartIcon.classList.replace("fa-regular", "fa-solid")
         this.saveRecipe(event)
       } else if (heartIcon.classList.contains("save-fav")) {
         heartIcon.classList.remove("save-fav")
+        heartIcon.classList.replace("fa-solid", "fa-regular")
         this.unsaveRecipe(event)
       }
   }

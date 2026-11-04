@@ -47,7 +47,7 @@
 }
 
 .recipe-info-card {
-  height: 450px;
+  height: 490px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,7 +91,12 @@
 
 }
 
-.fa-bookmark {
+.show-save-btn {
+  background-color: transparent;
+  border: 0;
+}
+
+.show-save-btn .fa-solid, .show-save-btn .fa-regular {
   width: 48px;
   height: 48px;
   border-radius: 12px;
@@ -100,11 +105,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #6b7280;
+  border: 1px solid lightgray;
 
+  &:hover {
+    color: #e0533d;
+  }
 
 }
 
-.saved {
-  color: #e4a93b;
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: #5f6673;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: #1f2937;
+  }
 }

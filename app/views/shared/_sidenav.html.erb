@@ -36,7 +36,7 @@
 
       <div class="d-none" data-meal-plan-builder-target="form">
 
-      <%= form_with url: meal_plans_path, method: :post, data: { turbo_frame: "_top" } do |form| %>
+      <%= form_with url: meal_plans_path, method: :post, data: { turbo_frame: "_top", action: "submit->meal-plan-builder#clearSelection" } do |form| %>
           <%= form.label :plan_date, "Select date",
               class: "form-label mb-2" %>
 

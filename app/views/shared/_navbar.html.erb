@@ -4,24 +4,27 @@
     <div class="d-flex align-items-center gap-3">
       <i class="fa-solid fa-utensils"></i>
       <%= link_to "Easy Plate", user_signed_in? ? meal_plans_path : pages_home_path, class: "navbar-header" %>
+
       <% if user_signed_in? %>
-      <div class="page-navigation-wrapper d-flex gap-4">
-        <%= link_to "Meal plans", meal_plans_path, class: "page-nav" %>
-        <%= link_to "Browse recipes", recipes_path, class: "page-nav" %>
-        <%= link_to "Favorites", recipes_saved_path, class: "page-nav" %>
-      </div>
+        <div class="page-navigation-wrapper d-flex gap-4">
+          <%= link_to "Meal plans", meal_plans_path, class: "page-nav" %>
+          <%= link_to "Browse recipes", recipes_path, class: "page-nav" %>
+          <%= link_to "Favorites", recipes_saved_path, class: "page-nav" %>
+        </div>
+      <% end %>
+    </div><%# CHANGED: always closes, logged in or out %>
 
-    </div>
-
+    <% if user_signed_in? %>
       <div class="d-flex align-items-center gap-3">
         <% if current_page?(recipes_path) %>
-        <form data-search-target="form" data-action="submit->search#submit">
-          <div class="form-group d-flex align-items-center">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" class="nav-search form-control" data-search-target="inputField" placeholder="Search dishes, ingredients, cuisines...">
-          </div>
-        </form>
-         <% end %>
+          <form data-search-target="form" data-action="submit->search#submit">
+            <div class="form-group d-flex align-items-center">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" class="nav-search form-control" data-search-target="inputField" placeholder="Search dishes, ingredients, cuisines...">
+            </div>
+          </form>
+        <% end %>
+
         <div data-category-target="selectedMeals">
           <% if current_page?(recipes_path) || current_page?(recipes_saved_path) %>
             <%= turbo_frame_tag "review_count" do %>
@@ -31,12 +34,13 @@
             <% end %>
           <% end %>
         </div>
+
         <%= link_to settings_path do %>
           <i class="fa-solid fa-gear settings-btn"></i>
         <% end %>
       </div>
     <% else %>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
         </li>

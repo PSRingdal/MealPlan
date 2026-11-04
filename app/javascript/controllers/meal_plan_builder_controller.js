@@ -8,4 +8,8 @@ export default class extends Controller {
     this.formTarget.classList.toggle("d-none")
     this.element.classList.toggle("expanded")
   }
+
+  clearSelection() {
+  sessionStorage.setItem("iconId", JSON.stringify([]))
+}
 }

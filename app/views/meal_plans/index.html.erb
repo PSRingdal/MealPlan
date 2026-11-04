@@ -9,12 +9,17 @@
         <div class="meal-plan-container">
           <% sorted_dates = @meal_plans_by_date.sort { |a, b| a <=> b } %>
           <% sorted_dates.each do |date, meal_plan|%>
-            <div class=" meal-plan-card-wrapper bg-white  px-3 mb-3 d-flex flex-column ">
-              <div class="day-heading ">
-                <h2><%= link_to date_label(date), meal_plans_path(date: date), class: "navigation-link" %></h2>
-                <span class="date-label"> <%=(date.strftime ("%a %d %b"))%></span>
-              </div>
+          <div class="day-heading ">
+            <h2><%= link_to date_label(date), meal_plans_path(date: date), class: "navigation-link" %></h2>
+            <span class="date-label"> <%=(date.strftime ("%a %d %b"))%></span>
+              <%= link_to "+ Add meal", recipes_path, class: "add-meal-btn" %>
+              <%= button_to meal_plan_path(meal_plan), method: :delete,
+                    class: "clear-plan-btn" do %>
+                <i class="fa-regular fa-trash-can"></i>
+              <% end %>
+            </div>
 
+            <div class=" meal-plan-card-wrapper bg-white border px-3 mb-3 d-flex flex-column ">
               <% meal_plan.each do |plan| %>
                 <% plan.meal_plan_recipes.each do |meal_plan_recipe| %>
                   <% recipe = meal_plan_recipe.recipe %>
@@ -44,11 +49,15 @@
           </h2>
 
           <% @ingredients.each do |ingredient, count| %>
-            <p>
-              <%= ingredient %>
-              <% if count > 1 %>
-                x <%= count %>
-              <% end %>
+            <p data-controller="grocery">
+              <input type="checkbox" data-action="change->grocery#toggle" data-grocery-target="checkbox">
+
+              <span class="ingredient-name" data-grocery-target="ingredient">
+                <%= ingredient %>
+                <% if count > 1 %>
+              <span class="count"> x <%= count %></span>
+                <% end %>
+              </span>
             </p>
           <% end %>
 

@@ -15,12 +15,10 @@
   }
 }
 
-
 .meal-plan-container {
   display: flex;
   flex-direction: column;
   max-width: 670px;
-  padding: 0 16px;
 }
 
 .meal-row {
@@ -36,6 +34,7 @@
 
 .meal-plan-card-wrapper {
   border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .meal-plan-card-wrapper a:last-child .meal-plan-card {
@@ -93,3 +92,50 @@
     border: none;
     z-index: 2;
   }
+
+  .checked {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.day-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+
+  .add-meal-btn {
+    margin-left: auto;
+    align-self: center;
+    padding: 6px 14px;
+    border: 1px solid #d9d5cc;
+    border-radius: 999px;
+    color: #2f8f5f;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      background: #e6f3ec;
+    }
+  }
+}
+
+.clear-plan-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid #d9d5cc;
+  border-radius: 999px;
+  background: transparent;
+  color: #5f6673;
+  font-weight: 600;
+  font-size: 14px;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+
+  &:hover {
+    color: #dc2626;
+    border-color: #dc2626;
+    background: #fef2f2;
+  }
+}

@@ -39,7 +39,7 @@
 }
 
 .settings-content {
-  background-color: #FCFAF4;
+  background-color: #ffff;
   border: 1px solid #DED6C1;
   border-radius: 16px;
   padding: 40px 44px 44px;;
@@ -81,4 +81,14 @@
 
 .d-none {
   display: none;
+}
+
+.save-chagnes-btn {
+  background-color: #247a52;
+  color: #ffff;
+
+  &:hover {
+    background-color: #278a5c;
+    color: #ffff;
+  }
 }

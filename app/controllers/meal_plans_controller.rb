@@ -40,6 +40,7 @@ class MealPlansController < ApplicationController
       @join = @meal_plan.meal_plan_recipes.new(recipe: @recipe)
       @join.save
     end
+      session[:meal_ids] = []
       redirect_to meal_plans_path, status: :see_other
   end
 
@@ -49,6 +50,7 @@ class MealPlansController < ApplicationController
   def destroy
     @meal_plan = MealPlan.find(params[:id])
     @meal_plan.destroy
+    redirect_to meal_plans_path, status: :see_other
   end
 
   private
