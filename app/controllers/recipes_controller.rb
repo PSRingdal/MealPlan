@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   def save
     recipe = fetch_recipe(params[:id])
 
-    existing_recipe = current_user.recipes.find_by(title: recipe["strMeal"])
+    existing_recipe = current_user.recipes.find_by(external_id: recipe["idMeal"])
     if existing_recipe.blank?
       @recipe = current_user.recipes.new(
         title: recipe["strMeal"],
@@ -19,6 +19,8 @@ class RecipesController < ApplicationController
         saved: true
       )
       @recipe.save
+    else
+      existing_recipe.update(saved: true)
     end
 
     respond_to do |format|
@@ -36,14 +38,14 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.json do
         recipe = fetch_recipe(params[:id])
-        @recipe = current_user.recipes.find_by(title: recipe["strMeal"])
-        @recipe.destroy
+        @recipe = current_user.recipes.find_by(external_id: recipe["idMeal"])
+        @recipe&.update(saved: false)
         head :ok
       end
 
       format.html do
         @recipe = current_user.recipes.find(params[:id])
-        @recipe.destroy
+        @recipe&.update(saved: false)
         redirect_back fallback_location: recipes_path
       end
     end

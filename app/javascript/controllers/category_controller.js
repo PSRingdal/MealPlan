@@ -95,6 +95,8 @@ export default class extends Controller {
     this.saveIconTargets.forEach((icon) => {
       if (savedMealIds.includes(icon.dataset.mealId)) {
         icon.classList.add("save-fav")
+        icon.classList.replace("fa-regular", "fa-solid")
+
       }
     })
   }
