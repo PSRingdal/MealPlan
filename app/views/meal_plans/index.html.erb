@@ -26,8 +26,10 @@
                   <div class="meal-plan-card d-flex align-items-center py-3 border-bottom rounded-0 justify-content-between">
                     <%= link_to recipe_path(recipe.external_id), class: "navigation-link d-flex align-items-center gap-3" do %>
                       <%= image_tag recipe.image_url, class: "meal-plan-img" %>
-                      <h3 class="meal-title"><%= recipe.title %></h3>
-                      <span><%= recipe.category %></span>
+                      <div class="meal-plan-card-body">
+                        <h3 class="meal-title"><%= recipe.title %></h3>
+                        <span><%= recipe.category %></span>
+                      </div>
                     <% end %>
 
                     <%= button_to meal_plan_meal_plan_recipe_path(plan, meal_plan_recipe), method: :delete, class: "meal-plan-remove-btn" do %>
