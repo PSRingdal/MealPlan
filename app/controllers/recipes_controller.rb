@@ -62,7 +62,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = fetch_recipe(params[:id])
-    @existing_recipe = current_user.recipes.find_by(title: @recipe["strMeal"])
+    @existing_recipe = current_user.recipes.find_by(external_id: @recipe["idMeal"], saved: true)
   end
 
   def destroy
