@@ -1,6 +1,14 @@
 EasyPlate 🍽️
-A full-stack meal planning app built with Ruby on Rails. Discover recipes, save your favourites, plan your meals and generate grocery lists.
-EasyPlate 
+A full-stack meal planning application built with Ruby on Rails. Discover recipes, save favourites, organise meals by date and get automatically generated grocery lists.
+
+Recipe Discovery
+![Recipe Discovery](./app/assets/images/recipe-discovery.png)
+
+Meal Planning
+![Meal Planning](./app/assets/images/recipe-meal-planning.png)
+
+Saved Recipes
+![Saved Recipes](./app/assets/images/recipe-favourites.png)
 
 Live demo: https://easy-plate-eu-65218bb12f71.herokuapp.com
 
@@ -40,8 +48,7 @@ Deployed and maintained a production Rails application
 Future improvements
 Edit existing meal plans
 Advanced recipe filtering and search
-Nutritional information
 Drag-and-drop meal scheduling
 
 Author
-Philip Ringdal GitHub
+Philip Samuel Ringdal
