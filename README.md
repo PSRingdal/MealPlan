@@ -2,7 +2,7 @@
 
 A full-stack meal planning application built with Ruby on Rails. Discover recipes, save favourites, organise meals by date and get automatically generated grocery lists.
 
-**Live Demo:** [EasyPlate](https://your-live-demo-url-here)
+**Live Demo:** [EasyPlate](https://easy-plate-eu-65218bb12f71.herokuapp.com)
 
 ---
 
