@@ -24,14 +24,14 @@ const mealPlanCard = (meal) => {
             <button class="add-recipe-btn btn rounded-pill"
             data-action="click->meal-selection#selectMeal click->meal-plan-review#review"
             data-category-target="addBtn" >
-            <div class="add-btn-div d-flex gap-3" >
-              <i class="fa-solid fa-plus toggle-icon"
-                data-meal-id="${meal.idMeal}"
-                data-meal-selection-target="icon"
-                data-category-target="icon"
-                data-meal-plan-review-target="addIcon"></i>
-                <span> Add to plan </span>
-            </div>
+              <div class="add-btn-div d-flex gap-3" >
+                <i class="fa-solid fa-plus toggle-icon"
+                  data-meal-id="${meal.idMeal}"
+                  data-meal-selection-target="icon"
+                  data-category-target="icon"
+                  data-meal-plan-review-target="addIcon"></i>
+                  <span> Add to plan </span>
+              </div>
             </button>
           </div>
         </div>
