@@ -14,4 +14,15 @@ class MealDbClient
     data = JSON.parse(response)
     data["categories"].map { |category| category["strCategory"] }
   end
+
+  def self.ingredients(id)
+    recipe_data = find(id)
+    ingredients = []
+
+    (1..20).each do |i|
+      ingredient = recipe_data["strIngredient#{i}"]
+      ingredients << ingredient if ingredient.present?
+    end
+    ingredients
+  end
 end

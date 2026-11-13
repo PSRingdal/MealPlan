@@ -4,25 +4,13 @@ class MealPlansController < ApplicationController
     @meal_plans_by_date = @meal_plans.group_by { |meal_plan| meal_plan.plan_date }
     @selected_date = params[:date].present? ? Date.parse(params[:date]) : Date.current
 
-    @recipes = []
-    meal_plans = current_user.meal_plans.where(plan_date: @selected_date)
-
-    meal_plans.each do |meal_plan|
-      @recipes += meal_plan.recipes
-    end
+    @recipes = @meal_plans.recipes_on(@selected_date)
 
     @ingredients = []
 
     @recipes.each do |recipe|
-      recipe_data = MealDbClient.find(recipe.external_id)
-
-      (1..20).each do |i|
-        ingredient = recipe_data["strIngredient#{i}"]
-
-        @ingredients << ingredient if ingredient.present?
+    @ingredients += MealDbClient.ingredients(recipe.external_id)
       end
-    end
-
     @ingredients = @ingredients.tally
   end
 
@@ -30,16 +18,8 @@ class MealPlansController < ApplicationController
     @meal_plan = current_user.meal_plans.new(plan_date: params[:plan_date])
     @meal_plan.save
 
-    meal_ids = session[:meal_ids]
+    @meal_plan.add_recipes_from_ids(session[:meal_ids])
 
-    meal_ids.each do |id|
-      recipe = MealDbClient.find(id)
-      @recipe = @meal_plan.recipes.new(title: recipe["strMeal"], category: recipe["strCategory"], image_url: recipe["strMealThumb"], external_id: recipe["idMeal"])
-      @recipe.user = current_user
-      @recipe.save
-      @join = @meal_plan.meal_plan_recipes.new(recipe: @recipe)
-      @join.save
-    end
       session[:meal_ids] = []
       redirect_to meal_plans_path, status: :see_other
   end
@@ -48,7 +28,7 @@ class MealPlansController < ApplicationController
   end
 
   def destroy
-    @meal_plan = MealPlan.find(params[:id])
+    @meal_plan = current_user.meal_plans.find(params[:id])
     @meal_plan.destroy
     redirect_to meal_plans_path, status: :see_other
   end
