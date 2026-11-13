@@ -4,12 +4,18 @@ export default class extends Controller {
     static targets = ["sidebar", "addIcon", "recipeCount"]
 
   connect() {
-    console.log("connected")
+  const ids = JSON.parse(sessionStorage.getItem("iconId")) || []
+
+  if (ids.length > 0) {
+    this.review()
+  }
   }
 
   async review() {
 
   const ids = JSON.parse(sessionStorage.getItem("iconId"))
+    console.log("Review starting:", ids)
+
 
    const response = await fetch("/recipes/review", {
       method: "POST",

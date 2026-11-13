@@ -8,20 +8,7 @@ class RecipesController < ApplicationController
   end
   def save
     recipe = fetch_recipe(params[:id])
-
-    existing_recipe = current_user.recipes.find_by(external_id: recipe["idMeal"])
-    if existing_recipe.blank?
-      @recipe = current_user.recipes.new(
-        title: recipe["strMeal"],
-        category: recipe["strCategory"],
-        image_url: recipe["strMealThumb"],
-        external_id: recipe["idMeal"],
-        saved: true
-      )
-      @recipe.save
-    else
-      existing_recipe.update(saved: true)
-    end
+    current_user.recipes.save_from_api(recipe)
 
     respond_to do |format|
       format.html { redirect_back fallback_location: recipes_path }
@@ -30,22 +17,20 @@ class RecipesController < ApplicationController
   end
 
   def saved
-    @saved_recipes = current_user.recipes.where(saved: true)
-    load_recipes
+    @saved_recipes = current_user.recipes.saved
   end
 
   def unsave
     respond_to do |format|
       format.json do
         recipe = fetch_recipe(params[:id])
-        @recipe = current_user.recipes.find_by(external_id: recipe["idMeal"])
-        @recipe&.update(saved: false)
+        current_user.recipes.unsave_from_api(recipe)
         head :ok
       end
 
       format.html do
         @recipe = current_user.recipes.find(params[:id])
-        @recipe&.update(saved: false)
+        @recipe.unsave
         redirect_back fallback_location: recipes_path
       end
     end
@@ -62,12 +47,12 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = fetch_recipe(params[:id])
-    @existing_recipe = current_user.recipes.find_by(external_id: @recipe["idMeal"], saved: true)
+    @existing_recipe = current_user.recipes.saved.find_by(external_id: @recipe["idMeal"])
     load_recipes
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
+    @recipe = current_user.recipes.find(params[:id])
     @recipe.destroy
   end
 
