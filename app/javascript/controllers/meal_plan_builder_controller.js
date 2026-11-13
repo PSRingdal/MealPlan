@@ -1,9 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-
-  connect() {
-  }
+  static targets = ["button", "form"]
 
   toggle() {
     this.buttonTarget.classList.toggle("d-none")

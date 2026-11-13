@@ -17,6 +17,7 @@ class MealPlansController < ApplicationController
   def create
     @meal_plan = current_user.meal_plans.new(plan_date: params[:plan_date])
     @meal_plan.save
+    puts @meal_plan.errors.full_messages
 
     @meal_plan.add_recipes_from_ids(session[:meal_ids])
 
