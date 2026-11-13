@@ -1,13 +1,10 @@
 class RecipesController < ApplicationController
   def index
-    url = "https://www.themealdb.com/api/json/v1/1/categories.php"
-    response = URI.open(url).read
-    data = JSON.parse(response)
-    @categories = data["categories"].map { |category| category["strCategory"] }
+    @categories = MealDbClient.categories
     load_recipes
   end
   def save
-    recipe = fetch_recipe(params[:id])
+    recipe = MealDbClient.find(params[:id])
     current_user.recipes.save_from_api(recipe)
 
     respond_to do |format|
@@ -23,7 +20,7 @@ class RecipesController < ApplicationController
   def unsave
     respond_to do |format|
       format.json do
-        recipe = fetch_recipe(params[:id])
+        recipe = MealDbClient.find(params[:id])
         current_user.recipes.unsave_from_api(recipe)
         head :ok
       end
@@ -46,7 +43,7 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = fetch_recipe(params[:id])
+    @recipe = MealDbClient.find(params[:id])
     @existing_recipe = current_user.recipes.saved.find_by(external_id: @recipe["idMeal"])
     load_recipes
   end
@@ -58,18 +55,11 @@ class RecipesController < ApplicationController
 
   private
 
-  def fetch_recipe(id)
-    url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
-    response = URI.open(url).read
-    data = JSON.parse(response)
-    data["meals"][0]
-  end
-
   def load_recipes
     @recipes = []
     meal_ids = session[:meal_ids] || []
     meal_ids.each do |id|
-    @recipes << fetch_recipe(id)
+    @recipes << MealDbClient.find(id)
     end
   end
 end

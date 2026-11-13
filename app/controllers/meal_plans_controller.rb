@@ -14,7 +14,7 @@ class MealPlansController < ApplicationController
     @ingredients = []
 
     @recipes.each do |recipe|
-      recipe_data = fetch_recipe(recipe.external_id)
+      recipe_data = MealDbClient.find(recipe.external_id)
 
       (1..20).each do |i|
         ingredient = recipe_data["strIngredient#{i}"]
@@ -33,7 +33,7 @@ class MealPlansController < ApplicationController
     meal_ids = session[:meal_ids]
 
     meal_ids.each do |id|
-      recipe = fetch_recipe(id)
+      recipe = MealDbClient.find(id)
       @recipe = @meal_plan.recipes.new(title: recipe["strMeal"], category: recipe["strCategory"], image_url: recipe["strMealThumb"], external_id: recipe["idMeal"])
       @recipe.user = current_user
       @recipe.save
@@ -51,14 +51,5 @@ class MealPlansController < ApplicationController
     @meal_plan = MealPlan.find(params[:id])
     @meal_plan.destroy
     redirect_to meal_plans_path, status: :see_other
-  end
-
-  private
-
-  def fetch_recipe(id)
-    url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
-    response = URI.open(url).read
-    data = JSON.parse(response)
-    data["meals"][0]
   end
 end
