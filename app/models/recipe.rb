@@ -3,6 +3,9 @@ class Recipe < ApplicationRecord
   has_many :meal_plan_recipes, dependent: :destroy
   has_many :meal_plans, through: :meal_plan_recipes
 
+  validates :title, presence: true
+  validates :external_id, presence: true,  uniqueness: { scope: :user_id  }
+
   def self.save_from_api(recipe)
     existing_recipe = find_by(external_id: recipe["idMeal"])
     if existing_recipe.blank?

@@ -3,6 +3,9 @@ class MealPlan < ApplicationRecord
   has_many :meal_plan_recipes, dependent: :destroy
   has_many :recipes, through: :meal_plan_recipes
 
+  validates :plan_date, presence: true, uniqueness: { scope: :user_id }
+
+
   def self.recipes_on(date)
     recipes = []
     meal_plans = where(plan_date: date)
