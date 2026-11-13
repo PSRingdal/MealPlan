@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
 
   def saved
     @saved_recipes = current_user.recipes.saved
+    load_recipes
   end
 
   def unsave

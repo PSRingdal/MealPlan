@@ -47,6 +47,7 @@ export default class extends Controller {
             icon.style.color ="black"
             icon.style.background ="white"
           }
+        })
 
         const currentSession = sessionStorage.getItem("iconId")
         const array = JSON.parse(currentSession)
@@ -54,7 +55,6 @@ export default class extends Controller {
           return ids !== id
         })
           sessionStorage.setItem("iconId", JSON.stringify(updatedSession))
-        })
       }
     });
 
