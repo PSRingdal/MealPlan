@@ -48,6 +48,12 @@ export default class extends Controller {
 
   connect() {
     this.fetchCategories()
+
+
+
+
+
+
   }
 
   fetchCategories() {
@@ -62,6 +68,7 @@ export default class extends Controller {
       row.classList.add("meal-row")
 
       const url = `${FILTERURL}?c=${categoryName}`
+
 
       fetch(url)
         .then(response => response.json())
@@ -84,6 +91,14 @@ export default class extends Controller {
             }
           })
             this.restoreState()
+
+            const recipeAreas = document.querySelectorAll(".recipe-area")
+
+            recipeAreas.forEach((area)=>{
+              if (area.innerText.trim() === "null") {
+              area.classList.add("d-none")
+              }
+            })
 
         })
     })
