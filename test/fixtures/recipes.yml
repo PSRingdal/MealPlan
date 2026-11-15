@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  instructions: MyText
-  user: one
+chicken_curry:
+  user: alice
+  title: Chicken Curry
+  external_id: "12345"
+  image_url: "https://example.com/chicken.jpg"
 
-two:
-  title: MyString
-  instructions: MyText
-  user: two
+beef_stew:
+  user: bob
+  title: Beef Stew
+  external_id: "67890"
+  image_url: "https://example.com/beef.jpg"

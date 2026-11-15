@@ -20,9 +20,7 @@ class MealPlan < ApplicationRecord
   ids.each do |id|
     data = MealDbClient.find(id)
 
-    recipe = user.recipes.find_or_create_by(
-      external_id: data["idMeal"]
-    ) do |r|
+    recipe = user.recipes.find_or_create_by(external_id: data["idMeal"]) do |r|
       r.title = data["strMeal"]
       r.category = data["strCategory"]
       r.image_url = data["strMealThumb"]

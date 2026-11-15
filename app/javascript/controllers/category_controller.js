@@ -48,12 +48,6 @@ export default class extends Controller {
 
   connect() {
     this.fetchCategories()
-
-
-
-
-
-
   }
 
   fetchCategories() {
