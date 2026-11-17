@@ -20,8 +20,9 @@ class MealPlansController < ApplicationController
 
     @meal_plan.add_recipes_from_ids(session[:meal_ids])
 
-      session[:meal_ids] = []
-      redirect_to meal_plans_path, status: :see_other
+
+    session[:meal_ids] = []
+    redirect_to meal_plans_path, status: :see_other
   end
 
   def show

@@ -17,16 +17,16 @@ class MealPlan < ApplicationRecord
   end
 
   def add_recipes_from_ids(ids)
-  ids.each do |id|
-    data = MealDbClient.find(id)
+    ids.each do |id|
+      data = MealDbClient.find(id)
 
-    recipe = user.recipes.find_or_create_by(external_id: data["idMeal"]) do |r|
-      r.title = data["strMeal"]
-      r.category = data["strCategory"]
-      r.image_url = data["strMealThumb"]
+      recipe = user.recipes.find_or_create_by(external_id: data["idMeal"]) do |r|
+        r.title = data["strMeal"]
+        r.category = data["strCategory"]
+        r.image_url = data["strMealThumb"]
+      end
+
+      meal_plan_recipes.find_or_create_by(recipe: recipe)
     end
-
-    meal_plan_recipes.find_or_create_by(recipe: recipe)
-  end
   end
 end

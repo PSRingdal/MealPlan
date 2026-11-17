@@ -14,13 +14,25 @@ class MealPlanTest < ActiveSupport::TestCase
   end
 
   test "returns recipes from meal plans on a given date" do
-  bob = users(:bob)
-  meal_plan = MealPlan.create(plan_date: Date.new(2026, 3, 10), user_id: bob.id)
-  recipe = Recipe.create(title: "Lasanga", external_id: 287, user_id: bob.id)
-  puts recipe.errors.full_messages
-  MealPlanRecipe.create(meal_plan_id: meal_plan.id, recipe_id: recipe.id)
+    bob = users(:bob)
+    meal_plan = MealPlan.create(plan_date: Date.new(2026, 3, 10), user_id: bob.id)
+    recipe = Recipe.create(title: "Lasanga", external_id: 287, user_id: bob.id)
+    puts recipe.errors.full_messages
+    MealPlanRecipe.create(meal_plan_id: meal_plan.id, recipe_id: recipe.id)
 
-  returned_recipes = MealPlan.recipes_on(Date.new(2026, 3, 10))
-  assert_includes(returned_recipes, recipe)
+    returned_recipes = MealPlan.recipes_on(Date.new(2026, 3, 10))
+    assert_includes(returned_recipes, recipe)
+  end
+
+  test "a recipe is associated with a meal plan" do
+    bob = users(:bob)
+    ids = [ "53092", "53150" ]
+
+    meal_plan = MealPlan.create(plan_date: Date.new(2026, 4, 8), user_id: bob.id)
+
+    meal_plan.add_recipes_from_ids(ids)
+    recipe = Recipe.find_by(external_id: 53092)
+    meal_plan_recipe = MealPlanRecipe.find_by(meal_plan_id: meal_plan.id, recipe_id: recipe.id)
+    assert_not_nil(meal_plan_recipe)
   end
 end
