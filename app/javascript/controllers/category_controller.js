@@ -19,9 +19,9 @@ const mealPlanCard = (meal) => {
         <div class="card-body">
           <h2> ${meal.strMeal}</h2>
 
-          <div class="footer d-flex justify-content-between align-items-center">
+          <div class="footer d-flex align-items-center">
           <span class="recipe-area">${meal.strArea}</span>
-            <button class="add-recipe-btn btn rounded-pill"
+            <button class="add-recipe-btn btn rounded-pill ms-auto"
             data-action="click->meal-selection#selectMeal click->meal-plan-review#review"
             data-category-target="addBtn" >
               <div class="add-btn-div d-flex gap-3" >
