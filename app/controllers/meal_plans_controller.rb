@@ -18,7 +18,7 @@ class MealPlansController < ApplicationController
     @meal_plan = current_user.meal_plans.new(plan_date: params[:plan_date])
     @meal_plan.save
 
-    @meal_plan.add_recipes_from_ids(session[:meal_ids])
+    @meal_plan.add_recipes_from_ids(session[:meal_ids] || [])
 
 
     session[:meal_ids] = []
