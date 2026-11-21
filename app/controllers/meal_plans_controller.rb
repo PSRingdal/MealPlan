@@ -15,14 +15,14 @@ class MealPlansController < ApplicationController
   end
 
   def create
-    existing_plan_date = current_user.meal_plans.find_by(plan_date: params[:plan_date])
-    if existing_plan_date.blank?
+    existing_meal_plan = current_user.meal_plans.find_by(plan_date: params[:plan_date])
+    if existing_meal_plan.blank?
       @meal_plan = current_user.meal_plans.new(plan_date: params[:plan_date])
       @meal_plan.save
       @meal_plan.add_recipes_from_ids(session[:meal_ids] || [])
 
     else
-      existing_plan_date.add_recipes_from_ids(session[:meal_ids] || [])
+      existing_meal_plan.add_recipes_from_ids(session[:meal_ids] || [])
     end
 
     session[:meal_ids] = []
