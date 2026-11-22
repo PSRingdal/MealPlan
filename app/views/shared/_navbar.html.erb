@@ -1,5 +1,11 @@
 <nav class="navbar navbar-expand-sm">
-  <div class="container-xxl">
+
+  <% if user_signed_in? %>
+      <div class="container-fluid">
+      <% else %>
+      <div class="container-xxl">
+  <% end %>
+
 
     <div class="d-flex align-items-center gap-3">
       <i class="fa-solid fa-utensils"></i>
