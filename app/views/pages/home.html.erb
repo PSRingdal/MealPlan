@@ -1,31 +1,97 @@
-<div class="container">
-  <div class="row pt-5">
+<div class="container-xxl">
+
+  <div class="row py-5">
     <div class="col-6">
       <div class="home-page">
-        <h1>Meals, sorted for the whole week.</h1>
-        <p>
+        <h1 class="mb-3">Meals, sorted for the whole week.</h1>
+        <p class="mb-4">
           Easy Plate helps you discover recipes,
           organise your meals and plan your week,
           all in one place.
         </p>
-        <%= link_to "Plan Your First Week", new_user_registration_path, class: "btn btn-dark"%>
+        <%= link_to "Plan Your First Week", new_user_registration_path, class: "btn btn-dark" %>
+        <ul class="features d-flex gap-4 mt-4 mb-0">
+          <li>Weekly planner</li>
+          <li>Automatic grocery list</li>
+          <li>Save your favourites</li>
+        </ul>
       </div>
     </div>
 
     <div class="col-6">
       <div class="hero-images">
-        <%= image_tag "food-jar.jpg",
-          alt: "Food-jar",
-          class: "food-jar-img" %>
-
-        <%= image_tag "container.jpg",
-          alt: "Salmon meal prep",
-          class: "salmon-img" %>
-
-        <%= image_tag "mealprep.jpg",
-          alt: "Meal prep containers",
-          class: "mealprep-img" %>
+        <%= image_tag "food-jar.jpg", alt: "Food-jar", class: "food-jar-img" %>
+        <%= image_tag "container.jpg", alt: "Salmon meal prep", class: "salmon-img" %>
+        <%= image_tag "mealprep.jpg", alt: "Meal prep containers", class: "mealprep-img" %>
       </div>
     </div>
   </div>
+
+  <div class="text-center mt-5 pt-5 mb-5">
+    <h2 class="fw-bold mb-2">Never wonder what to eat  again</h2>
+    <p class="text-muted mb-0">Discover recipes, save your favourites and drop them into your weekly plan</p>
+  </div>
+
+  <div class="recipe-carousel pb-5 mb-5">
+    <div class="carousel-track">
+      <% 2.times do |i| %>
+        <% @recipes.each do |recipe| %>
+          <div class="card">
+            <img src="<%= recipe["strMealThumb"] %>" class="card-img-top" alt="<%= recipe["strMeal"] %>">
+
+            <div class="card-body d-flex flex-column">
+              <h3 class="h5"><%= recipe["strMeal"] %></h3>
+              <div class="mt-auto pt-2">
+                <span class="recipe-category"><%= recipe["strCategory"] %></span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
 </div>
+
+<section class="steps-section pb-5 mb-5">
+  <div class="container-xxl text-center">
+
+    <div class="mb-5">
+      <h2 class="fw-bold mb-2">How it works</h2>
+      <p class="text-muted mb-0">Three simple steps to a stress-free week.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-4">
+        <div class="card step-card h-100">
+          <div class="card-body p-4">
+            <span class="step-number mb-3">1</span>
+            <h3 class="h5 mb-2">Discover recipes</h3>
+            <p class="text-muted mb-0">Browse meals from around the world and save your favourites.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="card step-card h-100">
+          <div class="card-body p-4">
+            <span class="step-number mb-3">2</span>
+            <h3 class="h5 mb-2">Plan your week</h3>
+            <p class="text-muted mb-0">Add recipes to your weekly planner and choose what you're eating each day</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="card step-card h-100">
+          <div class="card-body p-4">
+            <span class="step-number mb-3">3</span>
+            <h3 class="h5 mb-2">Shop with ease</h3>
+            <p class="text-muted mb-0">Get an automatic grocery list built from your plan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -52,3 +52,75 @@
   object-fit: cover;
   border-radius: 24px;
 }
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  color: #5f6673;
+  font-size: 14px;
+  font-weight: 500;
+
+  li::before {
+    content: "✓";
+    margin-right: 8px;
+    color: #247a52;
+    font-weight: 700;
+  }
+}
+
+.recipe-carousel {
+  overflow: hidden;
+}
+
+.recipe-carousel {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 120px);
+  mask-image: linear-gradient(to right, transparent, #000 120px);
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: carousel-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.carousel-track .card {
+  flex: 0 0 270px;
+  margin-right: 24px;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@keyframes carousel-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-2058px, 0, 0); }
+}
+
+
+.step-card {
+  width: 100%;
+  max-width: none;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #212529;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+}
