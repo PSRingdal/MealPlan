@@ -15,13 +15,21 @@ class MealDbClient
     data["categories"].map { |category| category["strCategory"] }
   end
 
-  def self.ingredients(id)
+  def self.ingredients_with_measurements(id)
     recipe_data = find(id)
+
     ingredients = []
 
     (1..20).each do |i|
       ingredient = recipe_data["strIngredient#{i}"]
-      ingredients << ingredient if ingredient.present?
+      measurement = recipe_data["strMeasure#{i}"]
+
+      next if ingredient.blank? || measurement.blank?
+
+      ingredients << {
+        ingredient: ingredient,
+        measurement: measurement
+      }
     end
     ingredients
   end

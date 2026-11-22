@@ -6,12 +6,22 @@ class MealPlansController < ApplicationController
 
     @recipes = @meal_plans.recipes_on(@selected_date)
 
-    @ingredients = []
+    @ingredients = {}
 
     @recipes.each do |recipe|
-    @ingredients += MealDbClient.ingredients(recipe.external_id)
+      MealDbClient.ingredients_with_measurements(recipe.external_id).each do |item|
+        ingredient = item[:ingredient]
+
+        if @ingredients[ingredient]
+          @ingredients[ingredient][:count] += 1
+        else
+          @ingredients[ingredient] = {
+            measurement: item[:measurement],
+            count: 1
+          }
+        end
       end
-    @ingredients = @ingredients.tally
+    end
   end
 
   def create

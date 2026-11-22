@@ -42,30 +42,41 @@
           <% end %>
         </div>
       </div>
-
       <div class="col-4">
         <h2 class="grocery-list-header mb-3">
-            <i class="fa-solid fa-cart-shopping"></i>
-            Grocery list
-          </h2>
-      <% if @recipes.any? %>
-        <div class="grocery-list-card bg-white border">
-          <% @ingredients.each do |ingredient, count| %>
-            <p data-controller="grocery">
-              <input type="checkbox" data-action="change->grocery#toggle" data-grocery-target="checkbox">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Grocery list
+        </h2>
 
-              <span class="ingredient-name" data-grocery-target="ingredient">
-                <%= ingredient %>
-                <% if count > 1 %>
-              <span class="count"> x <%= count %></span>
-                <% end %>
-              </span>
-            </p>
-          <% end %>
+        <% if @recipes.any? %>
+          <div class="grocery-list-card bg-white border">
+            <% @ingredients.each do |ingredient, data| %>
+              <p data-controller="grocery">
+                <input
+                  type="checkbox"
+                  data-action="change->grocery#toggle"
+                  data-grocery-target="checkbox">
+
+                <span
+                  class="ingredient-name d-flex justify-content-between"
+                  data-grocery-target="ingredient">
+
+                  <span><%= ingredient %></span>
+
+                  <span>
+                    <%= data[:measurement] %>
+
+                    <% if data[:count] > 1 %>
+                      <span class="count">
+                        x <%= data[:count] %>
+                      </span>
+                    <% end %>
+                  </span>
+                </span>
+              </p>
+            <% end %>
+          </div>
         <% end %>
-
-
       </div>
-    </div>
   </div>
 </div>
