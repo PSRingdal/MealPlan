@@ -60,18 +60,15 @@
                 <span
                   class="ingredient-name d-flex justify-content-between"
                   data-grocery-target="ingredient">
-
-                  <span><%= ingredient %></span>
-
                   <span>
-                    <%= data[:measurement] %>
-
+                    <%= ingredient %>
                     <% if data[:count] > 1 %>
                       <span class="count">
                         x <%= data[:count] %>
                       </span>
                     <% end %>
                   </span>
+                  <span> <%= data[:measurement] %></span>
                 </span>
               </p>
             <% end %>

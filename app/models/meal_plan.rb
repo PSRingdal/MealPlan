@@ -29,4 +29,24 @@ class MealPlan < ApplicationRecord
       meal_plan_recipes.find_or_create_by(recipe: recipe)
     end
   end
+
+  def self.collect_ingredients(recipes)
+    ingredients = {}
+
+    recipes.each do |recipe|
+      MealDbClient.ingredients_with_measurements(recipe.external_id).each do |item|
+        ingredient = item[:ingredient]
+
+        if ingredients[ingredient]
+          ingredients[ingredient][:count] += 1
+        else
+          ingredients[ingredient] = {
+            measurement: item[:measurement],
+            count: 1
+          }
+        end
+      end
+    end
+    ingredients
+  end
 end
