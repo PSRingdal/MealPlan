@@ -6,7 +6,6 @@ class MealPlanRecipesControllerTest < ActionDispatch::IntegrationTest
     meal_plan_recipe = meal_plan_recipes(:bob_beef)
     meal_plan = meal_plans(:bob_plan)
 
-
     assert_difference("MealPlanRecipe.count", -1) do
       delete meal_plan_meal_plan_recipe_url(meal_plan, meal_plan_recipe)
     end

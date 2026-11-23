@@ -36,6 +36,7 @@ class RecipesController < ApplicationController
 
   def review
     session[:meal_ids] = params[:meal_ids]
+    Rails.logger.debug session.inspect
     load_recipes
 
     respond_to do |format|
