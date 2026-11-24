@@ -54,18 +54,19 @@
 </div>
 
 <section class="steps-section pb-5 mb-5">
-  <div class="container-xxl text-center">
+  <div class="container-xxl ">
 
     <div class="mb-5">
-      <h2 class="fw-bold mb-2">How it works</h2>
-      <p class="text-muted mb-0">Three simple steps to a stress-free week.</p>
+      <h2 class="fw-bold mb-2">Plan the week in three simple steps</h2>
+      <p class="text-muted mb-0">Choose recipes, build your plan, and enjoy a stress-free week</p>
     </div>
 
     <div class="row g-4">
       <div class="col-4">
-        <div class="card step-card h-100">
-          <div class="card-body p-4">
-            <span class="step-number mb-3">1</span>
+        <div class="step-card h-100">
+          <div class="card-body p-2">
+            <%= image_tag "step-1-find-recipes.jpg", alt: "Recipe cards with Add to plan buttons", class: "step-img" %>
+            <span class="step-number mt-4 mb-3">1</span>
             <h3 class="h5 mb-2">Discover recipes</h3>
             <p class="text-muted mb-0">Browse meals from around the world and save your favourites.</p>
           </div>
@@ -73,9 +74,10 @@
       </div>
 
       <div class="col-4">
-        <div class="card step-card h-100">
+        <div class="step-card h-100">
           <div class="card-body p-4">
-            <span class="step-number mb-3">2</span>
+            <%= image_tag "step-2-build-your-plan.jpg", alt: "Meal plan for today with three recipes", class: "step-img" %>
+            <span class="step-number mt-4 mb-3">2</span>
             <h3 class="h5 mb-2">Plan your week</h3>
             <p class="text-muted mb-0">Add recipes to your weekly planner and choose what you're eating each day</p>
           </div>
@@ -83,9 +85,10 @@
       </div>
 
       <div class="col-4">
-        <div class="card step-card h-100">
+        <div class="step-card h-100">
           <div class="card-body p-4">
-            <span class="step-number mb-3">3</span>
+            <%= image_tag "step-3-shop-once.jpg", alt: "Grocery list with ticked-off ingredients", class: "step-img" %>
+            <span class="step-number mt-4 mb-3">3</span>
             <h3 class="h5 mb-2">Shop with ease</h3>
             <p class="text-muted mb-0">Get an automatic grocery list built from your plan.</p>
           </div>
